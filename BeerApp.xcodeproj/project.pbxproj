@@ -150,6 +150,7 @@
 				C62380CD29E9A128004B7091 /* Sources */,
 				C62380CE29E9A128004B7091 /* Frameworks */,
 				C62380CF29E9A128004B7091 /* Resources */,
+				C68D929F29EC804E001DF60E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -205,6 +206,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C68D929F29EC804E001DF60E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"/opt/homebrew/bin:$PATH\"\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint не установлен. Установите его через Homebrew с командой 'brew install swiftlint'.\"\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C62380CD29E9A128004B7091 /* Sources */ = {
