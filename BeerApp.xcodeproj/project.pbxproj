@@ -10,13 +10,15 @@
 		3D3A34D46AB9444E34EBFA30 /* Pods_BeerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8599FA6D01B5027BFFB9CCF9 /* Pods_BeerApp.framework */; };
 		C62380D529E9A128004B7091 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62380D429E9A128004B7091 /* AppDelegate.swift */; };
 		C62380D729E9A128004B7091 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62380D629E9A128004B7091 /* SceneDelegate.swift */; };
-		C62380D929E9A128004B7091 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62380D829E9A128004B7091 /* ViewController.swift */; };
 		C62380DC29E9A128004B7091 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C62380DA29E9A128004B7091 /* Main.storyboard */; };
 		C62380DE29E9A12A004B7091 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C62380DD29E9A12A004B7091 /* Assets.xcassets */; };
 		C62380E129E9A12A004B7091 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C62380DF29E9A12A004B7091 /* LaunchScreen.storyboard */; };
 		C62380F229EB2EBA004B7091 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62380F129EB2EBA004B7091 /* SplashViewController.swift */; };
 		C62380F429EB2ED5004B7091 /* SplashModueAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62380F329EB2ED5004B7091 /* SplashModueAssembler.swift */; };
 		C62380F629EB2EE3004B7091 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62380F529EB2EE3004B7091 /* SplashPresenter.swift */; };
+		C639BEE829F326B7001804B1 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639BEE729F326B7001804B1 /* ModuleFactory.swift */; };
+		C639BEEB29F327D5001804B1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639BEEA29F327D5001804B1 /* Coordinator.swift */; };
+		C639BEED29F3288A001804B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639BEEC29F3288A001804B1 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +27,6 @@
 		C62380D129E9A128004B7091 /* BeerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C62380D429E9A128004B7091 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C62380D629E9A128004B7091 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C62380D829E9A128004B7091 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C62380DB29E9A128004B7091 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C62380DD29E9A12A004B7091 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C62380E029E9A12A004B7091 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -33,6 +34,9 @@
 		C62380F129EB2EBA004B7091 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		C62380F329EB2ED5004B7091 /* SplashModueAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashModueAssembler.swift; sourceTree = "<group>"; };
 		C62380F529EB2EE3004B7091 /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
+		C639BEE729F326B7001804B1 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
+		C639BEEA29F327D5001804B1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		C639BEEC29F3288A001804B1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E2DF8C3176C98B6896C12F4B /* Pods-BeerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeerApp.release.xcconfig"; path = "Target Support Files/Pods-BeerApp/Pods-BeerApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,7 +85,6 @@
 				C62380E229E9A12A004B7091 /* Info.plist */,
 				C62380E929EB21B5004B7091 /* Sourse */,
 				C62380E829E9A2BE004B7091 /* Resource */,
-				C62380D829E9A128004B7091 /* ViewController.swift */,
 				C62380DA29E9A128004B7091 /* Main.storyboard */,
 			);
 			path = BeerApp;
@@ -109,7 +112,10 @@
 		C62380EA29EB2CF7004B7091 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				C639BEE629F3269C001804B1 /* Factories */,
+				C639BEE529F3265A001804B1 /* Extensions */,
 				C62380ED29EB2D6C004B7091 /* Application */,
+				C639BEEC29F3288A001804B1 /* Constants.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -125,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				C62380EF29EB2DCB004B7091 /* Modules */,
+				C639BEEA29F327D5001804B1 /* Coordinator.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -154,6 +161,21 @@
 				C62380F529EB2EE3004B7091 /* SplashPresenter.swift */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		C639BEE529F3265A001804B1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C639BEE629F3269C001804B1 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				C639BEE729F326B7001804B1 /* ModuleFactory.swift */,
+			);
+			path = Factories;
 			sourceTree = "<group>";
 		};
 		EB1DB8CF8E9C4B40C536F244 /* Frameworks */ = {
@@ -281,12 +303,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C62380D929E9A128004B7091 /* ViewController.swift in Sources */,
 				C62380D529E9A128004B7091 /* AppDelegate.swift in Sources */,
+				C639BEE829F326B7001804B1 /* ModuleFactory.swift in Sources */,
+				C639BEEB29F327D5001804B1 /* Coordinator.swift in Sources */,
 				C62380D729E9A128004B7091 /* SceneDelegate.swift in Sources */,
 				C62380F429EB2ED5004B7091 /* SplashModueAssembler.swift in Sources */,
 				C62380F229EB2EBA004B7091 /* SplashViewController.swift in Sources */,
 				C62380F629EB2EE3004B7091 /* SplashPresenter.swift in Sources */,
+				C639BEED29F3288A001804B1 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
