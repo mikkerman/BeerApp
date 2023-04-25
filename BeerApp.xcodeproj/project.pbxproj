@@ -279,20 +279,19 @@
 		};
 		C68D929F29EC804E001DF60E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			alwaysOutOfDate = 1;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
-				"$(SRCROOT)/newInputFile.xcfilelist",
 			);
 			inputPaths = (
 			);
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/newOutputFile",
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ -d \"${PODS_ROOT}/SwiftLint\" ]; then\n  \"${PODS_ROOT}/SwiftLint/swiftlint\"\nelse\n  echo \"warning: SwiftLint not installed, download via CocoaPods\"\nfi\n\n\n";
 		};

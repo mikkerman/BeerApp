@@ -10,9 +10,22 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
-    func scene(_ scene: UIScene,
-               willConnectTo session: UISceneSession,
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
-        guard (scene as? UIWindowScene) != nil else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+
+        let moduleFactory = ModuleFactory()
+
+        let coordinator = Coordinator(window: UIWindow(windowScene: windowScene), moduleFactory: moduleFactory)
+        moduleFactory.injectCoordinator(with: coordinator)
+
+        let splashViewController = moduleFactory.buildSplashModule()
+
+        let window = UIWindow(windowScene: windowScene)
+        window.rootViewController = splashViewController
+        window.makeKeyAndVisible()
+
+        self.window = window
     }
+
 }

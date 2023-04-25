@@ -11,8 +11,6 @@ final class ModuleFactory {
 
     // MARK: Private properties
     private weak var coordinator: Coordinator?
-  
-
     // MARK: Public Methods
     func injectCoordinator(with coordinator: Coordinator) {
         if self.coordinator == nil { self.coordinator = coordinator }
@@ -22,7 +20,6 @@ final class ModuleFactory {
         guard let coordinator = coordinator else { return UIViewController() }
         return SplashModuleAssembler.build(coordinator: coordinator)
     }
-
 
     // MARK: Private methods
 }
