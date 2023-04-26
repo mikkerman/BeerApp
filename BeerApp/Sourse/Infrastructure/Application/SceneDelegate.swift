@@ -19,13 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let coordinator = Coordinator(window: UIWindow(windowScene: windowScene), moduleFactory: moduleFactory)
         moduleFactory.injectCoordinator(with: coordinator)
 
-        let splashViewController = moduleFactory.buildSplashModule()
+        coordinator.start()
 
-        let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = splashViewController
-        window.makeKeyAndVisible()
-
-        self.window = window
+        self.window = coordinator.window
     }
-
 }
