@@ -9,8 +9,8 @@ import UIKit
 
 final class Coordinator {
 
-    // MARK: Private properties
-    let window: UIWindow?
+    // MARK: Properties
+    private let window: UIWindow?
     private let moduleFactory: ModuleFactory
 
     // MARK: Init

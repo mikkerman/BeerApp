@@ -16,11 +16,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let moduleFactory = ModuleFactory()
 
-        let coordinator = Coordinator(window: UIWindow(windowScene: windowScene), moduleFactory: moduleFactory)
+        let coordinatorWindow = UIWindow(windowScene: windowScene)
+        let coordinator = Coordinator(window: coordinatorWindow, moduleFactory: moduleFactory)
         moduleFactory.injectCoordinator(with: coordinator)
 
         coordinator.start()
 
-        self.window = coordinator.window
+        self.window = coordinatorWindow
     }
 }
