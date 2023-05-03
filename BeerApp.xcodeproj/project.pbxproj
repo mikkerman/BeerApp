@@ -19,6 +19,8 @@
 		C639BEE829F326B7001804B1 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639BEE729F326B7001804B1 /* ModuleFactory.swift */; };
 		C639BEEB29F327D5001804B1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639BEEA29F327D5001804B1 /* Coordinator.swift */; };
 		C639BEED29F3288A001804B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639BEEC29F3288A001804B1 /* Constants.swift */; };
+		C63B5CB82A0285EF00B08E76 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63B5CB72A0285EF00B08E76 /* Fonts.swift */; };
+		C63B5CBA2A028A5A00B08E76 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63B5CB92A028A5A00B08E76 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		C639BEE729F326B7001804B1 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
 		C639BEEA29F327D5001804B1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		C639BEEC29F3288A001804B1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C63B5CB72A0285EF00B08E76 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		C63B5CB92A028A5A00B08E76 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		E2DF8C3176C98B6896C12F4B /* Pods-BeerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeerApp.release.xcconfig"; path = "Target Support Files/Pods-BeerApp/Pods-BeerApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +99,8 @@
 			children = (
 				C62380DD29E9A12A004B7091 /* Assets.xcassets */,
 				C62380DF29E9A12A004B7091 /* LaunchScreen.storyboard */,
+				C63B5CB72A0285EF00B08E76 /* Fonts.swift */,
+				C63B5CB92A028A5A00B08E76 /* Colors.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -303,12 +309,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C62380D529E9A128004B7091 /* AppDelegate.swift in Sources */,
+				C63B5CBA2A028A5A00B08E76 /* Colors.swift in Sources */,
 				C639BEE829F326B7001804B1 /* ModuleFactory.swift in Sources */,
 				C639BEEB29F327D5001804B1 /* Coordinator.swift in Sources */,
 				C62380D729E9A128004B7091 /* SceneDelegate.swift in Sources */,
 				C62380F429EB2ED5004B7091 /* SplashModueAssembler.swift in Sources */,
 				C62380F229EB2EBA004B7091 /* SplashViewController.swift in Sources */,
 				C62380F629EB2EE3004B7091 /* SplashPresenter.swift in Sources */,
+				C63B5CB82A0285EF00B08E76 /* Fonts.swift in Sources */,
 				C639BEED29F3288A001804B1 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
