@@ -12,4 +12,3 @@ enum Fonts {
     static let descriptionFont = UIFont(name: "Raleway", size: 20)
     static let descriptionFontSemiBold = UIFont(name: "Raleway-SemiBold", size: 20)
 }
-
