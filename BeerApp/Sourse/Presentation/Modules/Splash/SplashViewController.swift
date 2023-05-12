@@ -15,12 +15,18 @@ class SplashViewController: UIViewController {
 
     // MARK: Private properties
     private let presenter: SplashPresenter
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        presenter.viewDidLoad()
+        print("SplashViewController loaded")
+    }
 
     // MARK: Init
     init(presenter: SplashPresenter) {
         self.presenter = presenter
         super.init(nibName: nil,
                    bundle: nil)
+        self.view.backgroundColor = .purple // test
     }
 
     required init?(coder: NSCoder) {
