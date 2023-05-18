@@ -15,22 +15,22 @@ class SplashViewController: UIViewController {
 
     // MARK: Private properties
     private let presenter: SplashPresenter
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        presenter.viewDidLoad()
-        print("SplashViewController loaded")
-    }
 
     // MARK: Init
     init(presenter: SplashPresenter) {
         self.presenter = presenter
         super.init(nibName: nil,
                    bundle: nil)
-        self.view.backgroundColor = .purple // test
+        self.view.backgroundColor = .purple// test
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.viewWillAppear()
     }
 }
 

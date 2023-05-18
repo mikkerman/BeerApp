@@ -22,17 +22,7 @@ final class SplashPresenter {
         if self.view == nil { self.view = view }
     }
 
-    func viewDidLoad() {
-        print("SplashPresenter received viewDidLoad")
-        navigateToDescriptionAfterDelay()
-    }
-
-    // MARK: Private Methods
-    private func navigateToDescriptionAfterDelay() {
-        print("Starting delay")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            print("Delay finished, navigating to Description")
-            self.coordinator.showDescription()
-        }
+    func viewWillAppear() {
+        coordinator.showDescription()
     }
 }

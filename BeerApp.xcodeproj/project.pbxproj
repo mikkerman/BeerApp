@@ -17,6 +17,9 @@
 		C62380F429EB2ED5004B7091 /* SplashModueAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62380F329EB2ED5004B7091 /* SplashModueAssembler.swift */; };
 		C62380F629EB2EE3004B7091 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62380F529EB2EE3004B7091 /* SplashPresenter.swift */; };
 		C6281FD72A0CAB0B00D66BDE /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6281FD62A0CAB0B00D66BDE /* DescriptionViewController.swift */; };
+		C6281FD92A154A9900D66BDE /* DescriptionModuleAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6281FD82A154A9900D66BDE /* DescriptionModuleAssembler.swift */; };
+		C6281FDC2A168EC600D66BDE /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = C6281FDB2A168EC600D66BDE /* SwiftyBeaver */; };
+		C6281FDE2A168F9B00D66BDE /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6281FDD2A168F9B00D66BDE /* AppLogger.swift */; };
 		C639BEE829F326B7001804B1 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639BEE729F326B7001804B1 /* ModuleFactory.swift */; };
 		C639BEEB29F327D5001804B1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639BEEA29F327D5001804B1 /* Coordinator.swift */; };
 		C639BEED29F3288A001804B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639BEEC29F3288A001804B1 /* Constants.swift */; };
@@ -39,6 +42,8 @@
 		C62380F329EB2ED5004B7091 /* SplashModueAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashModueAssembler.swift; sourceTree = "<group>"; };
 		C62380F529EB2EE3004B7091 /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
 		C6281FD62A0CAB0B00D66BDE /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
+		C6281FD82A154A9900D66BDE /* DescriptionModuleAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionModuleAssembler.swift; sourceTree = "<group>"; };
+		C6281FDD2A168F9B00D66BDE /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 		C639BEE729F326B7001804B1 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
 		C639BEEA29F327D5001804B1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		C639BEEC29F3288A001804B1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -54,6 +59,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D3A34D46AB9444E34EBFA30 /* Pods_BeerApp.framework in Frameworks */,
+				C6281FDC2A168EC600D66BDE /* SwiftyBeaver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +100,7 @@
 				C62380E929EB21B5004B7091 /* Sourse */,
 				C62380E829E9A2BE004B7091 /* Resource */,
 				C62380DA29E9A128004B7091 /* Main.storyboard */,
+				C6281FDD2A168F9B00D66BDE /* AppLogger.swift */,
 			);
 			path = BeerApp;
 			sourceTree = "<group>";
@@ -177,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				C6281FD62A0CAB0B00D66BDE /* DescriptionViewController.swift */,
+				C6281FD82A154A9900D66BDE /* DescriptionModuleAssembler.swift */,
 			);
 			path = DescriptionModule;
 			sourceTree = "<group>";
@@ -224,6 +232,9 @@
 			dependencies = (
 			);
 			name = BeerApp;
+			packageProductDependencies = (
+				C6281FDB2A168EC600D66BDE /* SwiftyBeaver */,
+			);
 			productName = BeerApp;
 			productReference = C62380D129E9A128004B7091 /* BeerApp.app */;
 			productType = "com.apple.product-type.application";
@@ -252,6 +263,9 @@
 				Base,
 			);
 			mainGroup = C62380C829E9A128004B7091;
+			packageReferences = (
+				C6281FDA2A168EC600D66BDE /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+			);
 			productRefGroup = C62380D229E9A128004B7091 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -322,10 +336,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6281FD92A154A9900D66BDE /* DescriptionModuleAssembler.swift in Sources */,
 				C62380D529E9A128004B7091 /* AppDelegate.swift in Sources */,
 				C639BEE829F326B7001804B1 /* ModuleFactory.swift in Sources */,
 				C639BEEB29F327D5001804B1 /* Coordinator.swift in Sources */,
 				C6FC350D2A052A2A001A5C57 /* UIColor+AppColors.swift in Sources */,
+				C6281FDE2A168F9B00D66BDE /* AppLogger.swift in Sources */,
 				C62380D729E9A128004B7091 /* SceneDelegate.swift in Sources */,
 				C62380F429EB2ED5004B7091 /* SplashModueAssembler.swift in Sources */,
 				C62380F229EB2EBA004B7091 /* SplashViewController.swift in Sources */,
@@ -565,6 +581,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C6281FDA2A168EC600D66BDE /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C6281FDB2A168EC600D66BDE /* SwiftyBeaver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C6281FDA2A168EC600D66BDE /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
+			productName = SwiftyBeaver;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C62380C929E9A128004B7091 /* Project object */;
 }

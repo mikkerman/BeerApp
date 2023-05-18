@@ -21,8 +21,7 @@ final class ModuleFactory {
         return SplashModuleAssembler.build(coordinator: coordinator)
     }
     func buildDescriptionModule() -> UIViewController {
-        return DescriptionViewController()
+        return DescriptionModuleAssembler.build()
     }
-
     // MARK: Private methods
 }
