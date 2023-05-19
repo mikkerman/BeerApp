@@ -20,6 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupLogging() {
         let console = ConsoleDestination()
         console.format = "$DHH:mm:ss$d $L $M"
-        log.addDestination(console)
+        logger.addDestination(console)
     }
 }

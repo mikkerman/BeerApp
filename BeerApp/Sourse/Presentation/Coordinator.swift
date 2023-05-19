@@ -28,7 +28,6 @@ final class Coordinator {
         window?.makeKeyAndVisible()
     }
     func showDescription() {
-        print("Showing DescriptionViewController")
         let descriptionViewController = moduleFactory.buildDescriptionModule()
         window?.rootViewController = descriptionViewController
     }
