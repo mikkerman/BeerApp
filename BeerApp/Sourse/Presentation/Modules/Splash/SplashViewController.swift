@@ -21,7 +21,6 @@ class SplashViewController: UIViewController {
         self.presenter = presenter
         super.init(nibName: nil,
                    bundle: nil)
-        self.view.backgroundColor = .purple// test
     }
 
     required init?(coder: NSCoder) {

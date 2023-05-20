@@ -8,15 +8,15 @@
 import UIKit
 
 class DescriptionViewController: UIViewController {
-    let path = UIBezierPath()
-    let shapeLayer = CAShapeLayer()
-    let imageView = UIImageView()
-    let textView = UITextView()
+    // MARK: - Properties
+    private let shapeLayer = CAShapeLayer()
+    private let imageView = UIImageView()
+    private let textView = UITextView()
 
-    // MARK: - Override Methods
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupBackgroundView()
+        view.backgroundColor = UIColor.beerColor
         addEllipseView()
         addImageView()
         addBeerDescription()
@@ -24,34 +24,39 @@ class DescriptionViewController: UIViewController {
     }
 
     // MARK: - Private Methods
-    private func setupBackgroundView() {
-        view.backgroundColor = UIColor.beerColor
-    }
-
     private func addEllipseView() {
-        path.move(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: view.bounds.width, y: 0))
-        path.addLine(to: CGPoint(x: view.bounds.width, y: view.bounds.height * 0.145))
-        path.addQuadCurve(to: CGPoint(x: 0, y: view.bounds.height * 0.145),
-                          controlPoint: CGPoint(x: view.bounds.width / 2, y: view.bounds.height * 0.185))
-        path.addLine(to: CGPoint(x: 0, y: 0))
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0,
+                              y: 0))
+        path.addLine(to: CGPoint(x: view.bounds.width,
+                                 y: 0))
+        path.addLine(to: CGPoint(x: view.bounds.width,
+                                 y: view.bounds.height * LocalConstants.ellipseHeightMultiplier))
+        path.addQuadCurve(to: CGPoint(x: 0,
+                                      y: view.bounds.height * LocalConstants.ellipseHeightMultiplier),
+                          controlPoint: CGPoint(x: view.bounds.width / 2,
+                                                y: view.bounds.height * 0.185))
+        path.addLine(to: CGPoint(x: 0,
+                                 y: 0))
         shapeLayer.path = path.cgPath
         shapeLayer.fillColor = UIColor.white.withAlphaComponent(0.8).cgColor
         view.layer.addSublayer(shapeLayer)
     }
 
     private func addImageView() {
-        imageView.backgroundColor = UIColor(red: 0.851, green: 0.851, blue: 0.851, alpha: 0.47)
-        imageView.layer.cornerRadius = 10
+        imageView.backgroundColor = UIColor.photoColor
+        imageView.layer.cornerRadius = LocalConstants.cornerRadius
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(imageView)
 
         NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+            imageView.widthAnchor.constraint(equalTo: view.widthAnchor,
+                                             multiplier: LocalConstants.imageViewWidthMultiplier),
             imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 45)
+            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                           constant: 45)
         ])
     }
 
@@ -65,10 +70,14 @@ class DescriptionViewController: UIViewController {
         view.addSubview(textView)
 
         NSLayoutConstraint.activate([
-            textView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 45),
-            textView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            textView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            textView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
+            textView.topAnchor.constraint(equalTo: imageView.bottomAnchor,
+                                          constant: 45),
+            textView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                                              constant: LocalConstants.textViewLeadingConstant),
+            textView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+                                               constant: LocalConstants.textViewTrailingConstant),
+            textView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                                             constant: LocalConstants.textViewBottomConstant)
         ])
 
         textView.text = """
@@ -87,5 +96,17 @@ class DescriptionViewController: UIViewController {
         Описание:
         Black, medium-bodied, cloudy, with a rich head, medium hopped, toasted malt notes, espresso-like, coffee notes.
         """
+    }
+}
+
+// MARK: - Constants
+private extension DescriptionViewController {
+    enum LocalConstants {
+        static let ellipseHeightMultiplier: CGFloat = 0.145
+        static let cornerRadius: CGFloat = 10
+        static let imageViewWidthMultiplier: CGFloat = 0.5
+        static let textViewLeadingConstant: CGFloat = 20
+        static let textViewTrailingConstant: CGFloat = -20
+        static let textViewBottomConstant: CGFloat = -20
     }
 }
