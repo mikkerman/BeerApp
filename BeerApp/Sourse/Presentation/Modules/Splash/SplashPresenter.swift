@@ -12,14 +12,17 @@ final class SplashPresenter {
     // MARK: Private properties
     private weak var view: SplashViewProtocol?
     private let coordinator: Coordinator
-
     // MARK: Init
     init(coordinator: Coordinator) {
         self.coordinator = coordinator
     }
 
     // MARK: Public Methods
-    func injectView(with view: SplashViewProtocol) {
+    func pushDescription(with view: SplashViewProtocol) {
         if self.view == nil { self.view = view }
+    }
+
+    func viewWillAppear() {
+        coordinator.showDescription()
     }
 }

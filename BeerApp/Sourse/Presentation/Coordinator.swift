@@ -10,6 +10,7 @@ import UIKit
 final class Coordinator {
 
     // MARK: Properties
+    // MARK: Private properties
     private let window: UIWindow?
     private let moduleFactory: ModuleFactory
 
@@ -25,5 +26,9 @@ final class Coordinator {
         let splashViewController = moduleFactory.buildSplashModule()
         window?.rootViewController = splashViewController
         window?.makeKeyAndVisible()
+    }
+    func showDescription() {
+        let descriptionViewController = moduleFactory.buildDescriptionModule()
+        window?.rootViewController = descriptionViewController
     }
 }
