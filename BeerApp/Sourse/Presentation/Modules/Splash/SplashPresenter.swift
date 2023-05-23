@@ -23,6 +23,6 @@ final class SplashPresenter {
     }
 
     func viewWillAppear() {
-        coordinator.showDescription()
+        coordinator.showCamera()
     }
 }

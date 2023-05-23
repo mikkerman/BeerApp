@@ -13,6 +13,10 @@
 				<dict>
 					<key>UISceneConfigurationName</key>
 					<string>Default Configuration</string>
+					<key>Fonts provided by application</key>
+					<array>
+						<string>&quot;Montserrat-Regular.ttf&quot;</string>
+					</array>
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 				</dict>

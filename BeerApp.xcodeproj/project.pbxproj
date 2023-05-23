@@ -15,6 +15,10 @@
 		C62380F229EB2EBA004B7091 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62380F129EB2EBA004B7091 /* SplashViewController.swift */; };
 		C62380F429EB2ED5004B7091 /* SplashModueAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62380F329EB2ED5004B7091 /* SplashModueAssembler.swift */; };
 		C62380F629EB2EE3004B7091 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62380F529EB2EE3004B7091 /* SplashPresenter.swift */; };
+		C627E1C02A1BFCC2005F53D7 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627E1BF2A1BFCC2005F53D7 /* CameraViewController.swift */; };
+		C627E1C22A1BFCD3005F53D7 /* CameraAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627E1C12A1BFCD3005F53D7 /* CameraAssembler.swift */; };
+		C627E1C72A1C0247005F53D7 /* Montserrat in Resources */ = {isa = PBXBuildFile; fileRef = C627E1C62A1C0247005F53D7 /* Montserrat */; };
+		C627E1CB2A1C02A6005F53D7 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C627E1CA2A1C02A6005F53D7 /* Montserrat-Regular.ttf */; };
 		C6281FD72A0CAB0B00D66BDE /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6281FD62A0CAB0B00D66BDE /* DescriptionViewController.swift */; };
 		C6281FD92A154A9900D66BDE /* DescriptionModuleAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6281FD82A154A9900D66BDE /* DescriptionModuleAssembler.swift */; };
 		C6281FDC2A168EC600D66BDE /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = C6281FDB2A168EC600D66BDE /* SwiftyBeaver */; };
@@ -39,6 +43,10 @@
 		C62380F129EB2EBA004B7091 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		C62380F329EB2ED5004B7091 /* SplashModueAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashModueAssembler.swift; sourceTree = "<group>"; };
 		C62380F529EB2EE3004B7091 /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
+		C627E1BF2A1BFCC2005F53D7 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		C627E1C12A1BFCD3005F53D7 /* CameraAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAssembler.swift; sourceTree = "<group>"; };
+		C627E1C62A1C0247005F53D7 /* Montserrat */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Montserrat; sourceTree = "<group>"; };
+		C627E1CA2A1C02A6005F53D7 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		C6281FD62A0CAB0B00D66BDE /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		C6281FD82A154A9900D66BDE /* DescriptionModuleAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionModuleAssembler.swift; sourceTree = "<group>"; };
 		C6281FDD2A168F9B00D66BDE /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
@@ -105,9 +113,9 @@
 		C62380E829E9A2BE004B7091 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C627E1CC2A1C02AF005F53D7 /* Fonts */,
 				C62380DD29E9A12A004B7091 /* Assets.xcassets */,
 				C62380DF29E9A12A004B7091 /* LaunchScreen.storyboard */,
-				C63B5CB72A0285EF00B08E76 /* Fonts.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -115,6 +123,7 @@
 		C62380E929EB21B5004B7091 /* Sourse */ = {
 			isa = PBXGroup;
 			children = (
+				C627E1C62A1C0247005F53D7 /* Montserrat */,
 				C62380EA29EB2CF7004B7091 /* Infrastructure */,
 				C62380EB29EB2D0F004B7091 /* Features */,
 				C62380EC29EB2D1B004B7091 /* Presentation */,
@@ -161,6 +170,7 @@
 		C62380EF29EB2DCB004B7091 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				C627E1BE2A1BFC9E005F53D7 /* CameraModule */,
 				C6281FD52A0CAACF00D66BDE /* DescriptionModule */,
 				C62380F029EB2DFD004B7091 /* Splash */,
 			);
@@ -175,6 +185,24 @@
 				C62380F529EB2EE3004B7091 /* SplashPresenter.swift */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		C627E1BE2A1BFC9E005F53D7 /* CameraModule */ = {
+			isa = PBXGroup;
+			children = (
+				C627E1BF2A1BFCC2005F53D7 /* CameraViewController.swift */,
+				C627E1C12A1BFCD3005F53D7 /* CameraAssembler.swift */,
+			);
+			path = CameraModule;
+			sourceTree = "<group>";
+		};
+		C627E1CC2A1C02AF005F53D7 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C63B5CB72A0285EF00B08E76 /* Fonts.swift */,
+				C627E1CA2A1C02A6005F53D7 /* Montserrat-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		C6281FD52A0CAACF00D66BDE /* DescriptionModule */ = {
@@ -277,7 +305,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C627E1CB2A1C02A6005F53D7 /* Montserrat-Regular.ttf in Resources */,
 				C62380E129E9A12A004B7091 /* LaunchScreen.storyboard in Resources */,
+				C627E1C72A1C0247005F53D7 /* Montserrat in Resources */,
 				C62380DE29E9A12A004B7091 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6281FD92A154A9900D66BDE /* DescriptionModuleAssembler.swift in Sources */,
+				C627E1C22A1BFCD3005F53D7 /* CameraAssembler.swift in Sources */,
 				C62380D529E9A128004B7091 /* AppDelegate.swift in Sources */,
 				C639BEE829F326B7001804B1 /* ModuleFactory.swift in Sources */,
 				C639BEEB29F327D5001804B1 /* Coordinator.swift in Sources */,
@@ -343,6 +374,7 @@
 				C62380F229EB2EBA004B7091 /* SplashViewController.swift in Sources */,
 				C62380F629EB2EE3004B7091 /* SplashPresenter.swift in Sources */,
 				C6FC35102A052A84001A5C57 /* UIColor+Hex.swift in Sources */,
+				C627E1C02A1BFCC2005F53D7 /* CameraViewController.swift in Sources */,
 				C6281FD72A0CAB0B00D66BDE /* DescriptionViewController.swift in Sources */,
 				C63B5CB82A0285EF00B08E76 /* Fonts.swift in Sources */,
 				C639BEED29F3288A001804B1 /* Constants.swift in Sources */,

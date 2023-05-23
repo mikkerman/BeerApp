@@ -27,8 +27,8 @@ final class Coordinator {
         window?.rootViewController = splashViewController
         window?.makeKeyAndVisible()
     }
-    func showDescription() {
-        let descriptionViewController = moduleFactory.buildDescriptionModule()
-        window?.rootViewController = descriptionViewController
+    func showCamera() {
+        let cameraViewController = moduleFactory.buildCameraModule()
+        window?.rootViewController = cameraViewController
     }
 }
