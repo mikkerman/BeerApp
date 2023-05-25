@@ -19,6 +19,7 @@
 		C627E1C22A1BFCD3005F53D7 /* CameraAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627E1C12A1BFCD3005F53D7 /* CameraAssembler.swift */; };
 		C627E1C72A1C0247005F53D7 /* Montserrat in Resources */ = {isa = PBXBuildFile; fileRef = C627E1C62A1C0247005F53D7 /* Montserrat */; };
 		C627E1CB2A1C02A6005F53D7 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C627E1CA2A1C02A6005F53D7 /* Montserrat-Regular.ttf */; };
+		C627E1CE2A1D1D88005F53D7 /* BarcodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627E1CD2A1D1D88005F53D7 /* BarcodeScanner.swift */; };
 		C6281FD72A0CAB0B00D66BDE /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6281FD62A0CAB0B00D66BDE /* DescriptionViewController.swift */; };
 		C6281FD92A154A9900D66BDE /* DescriptionModuleAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6281FD82A154A9900D66BDE /* DescriptionModuleAssembler.swift */; };
 		C6281FDC2A168EC600D66BDE /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = C6281FDB2A168EC600D66BDE /* SwiftyBeaver */; };
@@ -47,6 +48,7 @@
 		C627E1C12A1BFCD3005F53D7 /* CameraAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAssembler.swift; sourceTree = "<group>"; };
 		C627E1C62A1C0247005F53D7 /* Montserrat */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Montserrat; sourceTree = "<group>"; };
 		C627E1CA2A1C02A6005F53D7 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		C627E1CD2A1D1D88005F53D7 /* BarcodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScanner.swift; sourceTree = "<group>"; };
 		C6281FD62A0CAB0B00D66BDE /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		C6281FD82A154A9900D66BDE /* DescriptionModuleAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionModuleAssembler.swift; sourceTree = "<group>"; };
 		C6281FDD2A168F9B00D66BDE /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
@@ -123,7 +125,6 @@
 		C62380E929EB21B5004B7091 /* Sourse */ = {
 			isa = PBXGroup;
 			children = (
-				C627E1C62A1C0247005F53D7 /* Montserrat */,
 				C62380EA29EB2CF7004B7091 /* Infrastructure */,
 				C62380EB29EB2D0F004B7091 /* Features */,
 				C62380EC29EB2D1B004B7091 /* Presentation */,
@@ -145,6 +146,7 @@
 		C62380EB29EB2D0F004B7091 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				C627E1CD2A1D1D88005F53D7 /* BarcodeScanner.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -199,6 +201,7 @@
 		C627E1CC2A1C02AF005F53D7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				C627E1C62A1C0247005F53D7 /* Montserrat */,
 				C63B5CB72A0285EF00B08E76 /* Fonts.swift */,
 				C627E1CA2A1C02A6005F53D7 /* Montserrat-Regular.ttf */,
 			);
@@ -362,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C627E1CE2A1D1D88005F53D7 /* BarcodeScanner.swift in Sources */,
 				C6281FD92A154A9900D66BDE /* DescriptionModuleAssembler.swift in Sources */,
 				C627E1C22A1BFCD3005F53D7 /* CameraAssembler.swift in Sources */,
 				C62380D529E9A128004B7091 /* AppDelegate.swift in Sources */,
