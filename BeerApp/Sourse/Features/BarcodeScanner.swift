@@ -43,6 +43,7 @@
 //    private func processBarcodeValue(_ barcodeValue: String) {
 //        // Обработка значения штрихкода, например, перенаправление на DescriptionViewController
 ////        let descriptionVC = DescriptionViewController(barcodeValue: barcodeValue)
-////        UIApplication.shared.windows.first?.rootViewController?.present(descriptionVC, animated: true, completion: nil)
+//        UIApplication.shared.windows.first?.rootViewController?.present(descriptionVC,
+// animated: true, completion: nil)
 //    }
 // }
