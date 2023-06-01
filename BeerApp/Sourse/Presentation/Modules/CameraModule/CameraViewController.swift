@@ -6,146 +6,252 @@
 //
 
 import UIKit
-import AVFoundation
 
-class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+class CameraViewController: UIViewController {
+
     // MARK: - Properties
-    var captureSession: AVCaptureSession!
-    var previewLayer: AVCaptureVideoPreviewLayer!
+    var scannerView: BarcodeScannerView!
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        for family in UIFont.familyNames {
+           for font in UIFont.fontNames(forFamilyName: family) {
+              print(font)
+           }
+        }
+
         view.backgroundColor = UIColor.beerColor
         addEllipseView()
         setupLabel()
-        setupCaptureSession()
+        setupScannerView()
         log.verbose("ViewController has loaded its view.")
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        startScanning()
+        scannerView.startScanning()
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        captureSession.stopRunning()
+        scannerView.stopScanning()
     }
     // MARK: - Private Methods
-    private func setupCaptureSession() {
-        captureSession = AVCaptureSession()
+    private func setupScannerView() {
+        scannerView = BarcodeScannerView(frame: CGRect(x: view.frame.midX - 150,
+                                                  y: view.frame.midY - 225,
+                                                  width: 300,
+                                                  height: 450))
+        scannerView.layer.cornerRadius = 10
+        scannerView.layer.masksToBounds = true
+        scannerView.delegate = self
+        view.addSubview(scannerView)
 
-        guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
-        let videoInput: AVCaptureDeviceInput
+        let lineView = UIView()
+        lineView.backgroundColor = .red
+        lineView.translatesAutoresizingMaskIntoConstraints = false
+        scannerView.addSubview(lineView)
+        NSLayoutConstraint.activate([
+            lineView.centerXAnchor.constraint(equalTo: scannerView.centerXAnchor),
+            lineView.centerYAnchor.constraint(equalTo: scannerView.centerYAnchor),
+            lineView.widthAnchor.constraint(equalToConstant: 250),
+            lineView.heightAnchor.constraint(equalToConstant: 1)
+        ])
 
-        do {
-            videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
-        } catch {
-            return
-        }
-
-        if captureSession.canAddInput(videoInput) {
-            captureSession.addInput(videoInput)
-        } else {
-            return
-        }
-
-        let metadataOutput = AVCaptureMetadataOutput()
-
-        if captureSession.canAddOutput(metadataOutput) {
-            captureSession.addOutput(metadataOutput)
-
-            metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            metadataOutput.metadataObjectTypes = [.ean8, .ean13, .pdf417]
-        } else {
-            return
-        }
-
-        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = view.layer.bounds
-        previewLayer.videoGravity = .resizeAspectFill
-        view.layer.addSublayer(previewLayer)
-
-        // Adding the preview layer in the middle of the screen
-        let cameraView = UIView()
-        cameraView.frame = CGRect(
-            x: view.frame.midX - 150,
-            y: view.frame.midY - 225,
-            width: 300,
-            height: 450)
-        cameraView.layer.cornerRadius = 10
-        cameraView.layer.masksToBounds = true
-        cameraView.layer.addSublayer(previewLayer)
-        previewLayer.frame = cameraView.bounds
-        view.addSubview(cameraView)
+        let instructionLabel = UILabel()
+        instructionLabel.text = "Держите штрих-код поперек красной линии"
+        instructionLabel.textColor = UIColor.textColor
+        instructionLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
+        instructionLabel.numberOfLines = 0
+        instructionLabel.textAlignment = .center
+        instructionLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(instructionLabel)
+        NSLayoutConstraint.activate([
+            instructionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            instructionLabel.topAnchor.constraint(equalTo: scannerView.bottomAnchor, constant: 30),
+            instructionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            instructionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
+        ])
     }
-    private func startScanning() {
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else { return }
-            if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
-                self.captureSession.startRunning()
-            } else {
-                AVCaptureDevice.requestAccess(for: .video) { granted in
-                    if granted {
-                        DispatchQueue.main.async { [weak self] in
-                            self?.captureSession.startRunning()
-                        }
-                    }
-                }
-            }
-        }
-    }
-    func metadataOutput(_ output: AVCaptureMetadataOutput,
-                        didOutput metadataObjects: [AVMetadataObject],
-                        from connection: AVCaptureConnection) {
-        captureSession.stopRunning()
-
-        if let metadataObject = metadataObjects.first {
-            guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
-            guard let stringValue = readableObject.stringValue else { return }
-            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            found(code: stringValue)
-        }
-        dismiss(animated: true)
-    }
-    func found(code: String) {
-        print(code)
-    }
-
     private func addEllipseView() {
         let shapeLayer = CAShapeLayer()
         let path = UIBezierPath()
         path.move(to: CGPoint(x: 0,
                               y: 0))
-        path.addLine(to: CGPoint(x: view.frame.width,
+        path.addLine(to: CGPoint(x: view.bounds.width,
                                  y: 0))
-        path.addLine(to: CGPoint(x: view.frame.width,
-                                 y: view.frame.height))
+        path.addLine(to: CGPoint(x: view.bounds.width,
+                                 y: view.bounds.height * 0.145))
+        path.addQuadCurve(to: CGPoint(x: 0,
+                                      y: view.bounds.height * 0.145),
+                          controlPoint: CGPoint(x: view.bounds.width / 2,
+                                                y: view.bounds.height * 0.185))
         path.addLine(to: CGPoint(x: 0,
-                                 y: view.frame.height))
-        path.close()
-        let maskPath = UIBezierPath(roundedRect: CGRect(x: view.frame.width/2 - 150,
-                                                        y: view.frame.height/2 - 225,
-                                                        width: 300,
-                                                        height: 450),
-                                    cornerRadius: 20)
-        path.append(maskPath)
+                                 y: 0))
         shapeLayer.path = path.cgPath
-        shapeLayer.fillColor = UIColor.black.withAlphaComponent(0.7).cgColor
-        shapeLayer.fillRule = CAShapeLayerFillRule.evenOdd
+        shapeLayer.fillColor = UIColor.white.withAlphaComponent(0.8).cgColor
         view.layer.addSublayer(shapeLayer)
     }
     private func setupLabel() {
-           let label = UILabel()
-           label.text = "BeerApp"
-           label.textColor = UIColor.textColor
-           label.font = UIFont(name: "Montserrat-Regular", size: 54)
-           label.translatesAutoresizingMaskIntoConstraints = false
-           view.addSubview(label)
-           NSLayoutConstraint.activate([
-               label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-               label.topAnchor.constraint(equalTo: view.topAnchor, constant: 90)
-           ])
-       }
+        let label = UILabel()
+        label.text = "BeerApp"
+        label.textColor = UIColor.textColor
+        label.font = UIFont(name: "Montserrat-Regular", size: 30)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(label)
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 90)
+        ])
+    }
 }
+
+extension CameraViewController: BarcodeScannerViewDelegate {
+    func barcodeScanningDidFail() {
+        print("Scanning Failed. Please try again.")
+    }
+    func barcodeScanningSucceededWithCode(_ str: String?) {
+        print("Barcode: ", str ?? "No barcode")
+    }
+    func barcodeScanningDidStop() {
+        print("Scanning stopped")
+    }
+}
+
+// import UIKit
+// import AVFoundation
+//
+// class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+//    // MARK: - Properties
+//    var captureSession: AVCaptureSession!
+//    var previewLayer: AVCaptureVideoPreviewLayer!
+//    // MARK: - Lifecycle Methods
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        view.backgroundColor = UIColor.beerColor
+//        addEllipseView()
+//        setupLabel()
+//        setupCaptureSession()
+//        log.verbose("ViewController has loaded its view.")
+//    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        startScanning()
+//    }
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        captureSession.stopRunning()
+//    }
+//    // MARK: - Private Methods
+//    private func setupCaptureSession() {
+//        captureSession = AVCaptureSession()
+//
+//        guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
+//        let videoInput: AVCaptureDeviceInput
+//
+//        do {
+//            videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
+//        } catch {
+//            return
+//        }
+//
+//        if captureSession.canAddInput(videoInput) {
+//            captureSession.addInput(videoInput)
+//        } else {
+//            return
+//        }
+//
+//        let metadataOutput = AVCaptureMetadataOutput()
+//
+//        if captureSession.canAddOutput(metadataOutput) {
+//            captureSession.addOutput(metadataOutput)
+//
+//            metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+//            metadataOutput.metadataObjectTypes = [.ean8, .ean13, .pdf417]
+//        } else {
+//            return
+//        }
+//
+//        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+//        previewLayer.frame = view.layer.bounds
+//        previewLayer.videoGravity = .resizeAspectFill
+//        view.layer.addSublayer(previewLayer)
+//
+//        // Adding the preview layer in the middle of the screen
+//        let cameraView = UIView()
+//        cameraView.frame = CGRect(
+//            x: view.frame.midX - 150,
+//            y: view.frame.midY - 225,
+//            width: 300,
+//            height: 450)
+//        cameraView.layer.cornerRadius = 10
+//        cameraView.layer.masksToBounds = true
+//        cameraView.layer.addSublayer(previewLayer)
+//        previewLayer.frame = cameraView.bounds
+//        view.addSubview(cameraView)
+//    }
+//    private func startScanning() {
+//        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+//            guard let self = self else { return }
+//            if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
+//                self.captureSession.startRunning()
+//            } else {
+//                AVCaptureDevice.requestAccess(for: .video) { granted in
+//                    if granted {
+//                        DispatchQueue.main.async { [weak self] in
+//                            self?.captureSession.startRunning()
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//    func metadataOutput(_ output: AVCaptureMetadataOutput,
+//                        didOutput metadataObjects: [AVMetadataObject],
+//                        from connection: AVCaptureConnection) {
+//        captureSession.stopRunning()
+//
+//        if let metadataObject = metadataObjects.first {
+//            guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
+//            guard let stringValue = readableObject.stringValue else { return }
+//            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+//            found(code: stringValue)
+//        }
+//        dismiss(animated: true)
+//    }
+//    func found(code: String) {
+//        print(code)
+//    }
+//    private func addEllipseView() {
+//        let shapeLayer = CAShapeLayer()
+//        let path = UIBezierPath()
+//        path.move(to: CGPoint(x: 0,
+//                              y: 0))
+//        path.addLine(to: CGPoint(x: view.bounds.width,
+//                                 y: 0))
+//        path.addLine(to: CGPoint(x: view.bounds.width,
+//                                 y: view.bounds.height * 0.145))
+//        path.addQuadCurve(to: CGPoint(x: 0,
+//                                      y: view.bounds.height * 0.145),
+//                          controlPoint: CGPoint(x: view.bounds.width / 2,
+//                                                y: view.bounds.height * 0.185))
+//        path.addLine(to: CGPoint(x: 0,
+//                                 y: 0))
+//        shapeLayer.path = path.cgPath
+//        shapeLayer.fillColor = UIColor.white.withAlphaComponent(0.8).cgColor
+//        view.layer.addSublayer(shapeLayer)
+//    }
+//    private func setupLabel() {
+//        let label = UILabel()
+//        label.text = "BeerApp"
+//        label.textColor = UIColor.textColor
+//        label.font = UIFont(name: "Montserrat-Regular", size: 54)
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(label)
+//        NSLayoutConstraint.activate([
+//            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+//            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 90)
+//        ])
+//    }
+// }
 
 // Первый вариант
 // import UIKit

@@ -17,13 +17,12 @@
 		C62380F629EB2EE3004B7091 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62380F529EB2EE3004B7091 /* SplashPresenter.swift */; };
 		C627E1C02A1BFCC2005F53D7 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627E1BF2A1BFCC2005F53D7 /* CameraViewController.swift */; };
 		C627E1C22A1BFCD3005F53D7 /* CameraAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627E1C12A1BFCD3005F53D7 /* CameraAssembler.swift */; };
-		C627E1C72A1C0247005F53D7 /* Montserrat in Resources */ = {isa = PBXBuildFile; fileRef = C627E1C62A1C0247005F53D7 /* Montserrat */; };
-		C627E1CB2A1C02A6005F53D7 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C627E1CA2A1C02A6005F53D7 /* Montserrat-Regular.ttf */; };
 		C627E1CE2A1D1D88005F53D7 /* BarcodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C627E1CD2A1D1D88005F53D7 /* BarcodeScanner.swift */; };
 		C6281FD72A0CAB0B00D66BDE /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6281FD62A0CAB0B00D66BDE /* DescriptionViewController.swift */; };
 		C6281FD92A154A9900D66BDE /* DescriptionModuleAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6281FD82A154A9900D66BDE /* DescriptionModuleAssembler.swift */; };
 		C6281FDC2A168EC600D66BDE /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = C6281FDB2A168EC600D66BDE /* SwiftyBeaver */; };
 		C6281FDE2A168F9B00D66BDE /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6281FDD2A168F9B00D66BDE /* AppLogger.swift */; };
+		C62EFC792A25412F00CE3789 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C62EFC782A25412F00CE3789 /* Montserrat-Regular.ttf */; };
 		C639BEE829F326B7001804B1 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639BEE729F326B7001804B1 /* ModuleFactory.swift */; };
 		C639BEEB29F327D5001804B1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639BEEA29F327D5001804B1 /* Coordinator.swift */; };
 		C639BEED29F3288A001804B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639BEEC29F3288A001804B1 /* Constants.swift */; };
@@ -46,12 +45,11 @@
 		C62380F529EB2EE3004B7091 /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
 		C627E1BF2A1BFCC2005F53D7 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		C627E1C12A1BFCD3005F53D7 /* CameraAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAssembler.swift; sourceTree = "<group>"; };
-		C627E1C62A1C0247005F53D7 /* Montserrat */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Montserrat; sourceTree = "<group>"; };
-		C627E1CA2A1C02A6005F53D7 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		C627E1CD2A1D1D88005F53D7 /* BarcodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScanner.swift; sourceTree = "<group>"; };
 		C6281FD62A0CAB0B00D66BDE /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		C6281FD82A154A9900D66BDE /* DescriptionModuleAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionModuleAssembler.swift; sourceTree = "<group>"; };
 		C6281FDD2A168F9B00D66BDE /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
+		C62EFC782A25412F00CE3789 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		C639BEE729F326B7001804B1 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
 		C639BEEA29F327D5001804B1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		C639BEEC29F3288A001804B1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -86,6 +84,7 @@
 		C62380C829E9A128004B7091 = {
 			isa = PBXGroup;
 			children = (
+				C62EFC782A25412F00CE3789 /* Montserrat-Regular.ttf */,
 				C62380D329E9A128004B7091 /* BeerApp */,
 				C62380D229E9A128004B7091 /* Products */,
 				C39268CF9059088C7EB8B094 /* Pods */,
@@ -201,9 +200,7 @@
 		C627E1CC2A1C02AF005F53D7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				C627E1C62A1C0247005F53D7 /* Montserrat */,
 				C63B5CB72A0285EF00B08E76 /* Fonts.swift */,
-				C627E1CA2A1C02A6005F53D7 /* Montserrat-Regular.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -308,9 +305,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C627E1CB2A1C02A6005F53D7 /* Montserrat-Regular.ttf in Resources */,
 				C62380E129E9A12A004B7091 /* LaunchScreen.storyboard in Resources */,
-				C627E1C72A1C0247005F53D7 /* Montserrat in Resources */,
+				C62EFC792A25412F00CE3789 /* Montserrat-Regular.ttf in Resources */,
 				C62380DE29E9A12A004B7091 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

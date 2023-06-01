@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSCameraUsageDescription</key>
-	<string>&quot;This application uses the camera to scan barcodes.&quot;</string>
+	<string>This application uses the camera to scan barcodes.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -15,15 +15,15 @@
 				<dict>
 					<key>UISceneConfigurationName</key>
 					<string>Default Configuration</string>
-					<key>Fonts provided by application</key>
-					<array>
-						<string>&quot;Montserrat-Regular.ttf&quot;</string>
-					</array>
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 				</dict>
 			</array>
 		</dict>
 	</dict>
+    <key>UIAppFonts</key>
+    <array>
+        <string>Montserrat-Regular.ttf</string>
+    </array>
 </dict>
 </plist>

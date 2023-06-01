@@ -12,6 +12,7 @@ class DescriptionViewController: UIViewController {
     private let shapeLayer = CAShapeLayer()
     private let imageView = UIImageView()
     private let textView = UITextView()
+    var barCode = ""
 
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
