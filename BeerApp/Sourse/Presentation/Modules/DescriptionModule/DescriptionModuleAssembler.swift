@@ -8,8 +8,9 @@
 import UIKit
 
 class DescriptionModuleAssembler {
-    static func build() -> DescriptionViewController {
+    static func build(barcode: String) -> DescriptionViewController {
         let viewController = DescriptionViewController()
+        viewController.barCode = barcode
         return viewController
     }
 }

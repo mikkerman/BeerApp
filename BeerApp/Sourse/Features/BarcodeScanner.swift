@@ -13,6 +13,7 @@ protocol BarcodeScannerViewDelegate: AnyObject {
     func barcodeScanningDidStop()
 }
 
+
 class BarcodeScannerView: UIView {
     weak var delegate: BarcodeScannerViewDelegate?
     private var captureSession: AVCaptureSession!

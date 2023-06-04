@@ -28,7 +28,15 @@ final class Coordinator {
         window?.makeKeyAndVisible()
     }
     func showCamera() {
-        let cameraViewController = moduleFactory.buildCameraModule()
+        let cameraViewController = moduleFactory.buildCameraModule(coordinator: self)
         window?.rootViewController = cameraViewController
     }
+    func showDescriptionWithBarcode(_ barcode: String, from sourceVC: UIViewController) {
+        print("showDescriptionWithBarcode called with barcode: \(barcode)")
+        let descriptionViewController = moduleFactory.buildDescriptionModuleWithBarcode(barcode)
+        sourceVC.present(descriptionViewController, animated: true, completion: nil)
+    }
+
+
+
 }
