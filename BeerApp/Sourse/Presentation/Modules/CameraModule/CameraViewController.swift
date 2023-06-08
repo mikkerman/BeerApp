@@ -11,25 +11,19 @@ import AVFoundation
 class CameraViewController: UIViewController {
 
     // MARK: - Properties
-    var scannerView: BarcodeScannerView!
+    var scannerView = BarcodeScannerView(frame: .zero)
     var coordinator: Coordinator
-    
     init(coordinator: Coordinator) {
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        for family in UIFont.familyNames {
-           for font in UIFont.fontNames(forFamilyName: family) {
-              print(font)
-           }
-        }
         view.backgroundColor = UIColor.beerColor
         addEllipseView()
         setupLabel()
@@ -46,18 +40,21 @@ class CameraViewController: UIViewController {
         scannerView.stopScanning()
     }
 
-    
     // MARK: - Private Methods
     private func setupScannerView() {
-        scannerView = BarcodeScannerView(frame: CGRect(x: view.frame.midX - 150,
-                                                  y: view.frame.midY - 225,
-                                                  width: 300,
-                                                  height: 450))
-        scannerView.layer.cornerRadius = 10
+        scannerView = BarcodeScannerView()
+        scannerView.layer.cornerRadius = LocalConstants.cornerRadius
         scannerView.layer.masksToBounds = true
         scannerView.delegate = self
+        scannerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scannerView)
 
+        NSLayoutConstraint.activate([
+            scannerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scannerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            scannerView.widthAnchor.constraint(equalToConstant: LocalConstants.scannerViewWidthHeight),
+            scannerView.heightAnchor.constraint(equalToConstant: LocalConstants.scannerViewWidthHeight * 1.5)
+        ])
         let lineView = UIView()
         lineView.backgroundColor = .red
         lineView.translatesAutoresizingMaskIntoConstraints = false
@@ -65,23 +62,26 @@ class CameraViewController: UIViewController {
         NSLayoutConstraint.activate([
             lineView.centerXAnchor.constraint(equalTo: scannerView.centerXAnchor),
             lineView.centerYAnchor.constraint(equalTo: scannerView.centerYAnchor),
-            lineView.widthAnchor.constraint(equalToConstant: 250),
-            lineView.heightAnchor.constraint(equalToConstant: 1)
+            lineView.widthAnchor.constraint(equalToConstant: LocalConstants.lineViewWidth),
+            lineView.heightAnchor.constraint(equalToConstant: LocalConstants.lineViewHeight)
         ])
 
         let instructionLabel = UILabel()
-        instructionLabel.text = "Держите штрих-код поперек красной линии"
+        instructionLabel.text = NSLocalizedString("instructionLabelText", comment: "")
         instructionLabel.textColor = UIColor.textColor
-        instructionLabel.font = UIFont(name: "Montserrat-Regular", size: 16)
+        instructionLabel.font = Fonts.instructionLabelFont
         instructionLabel.numberOfLines = 0
         instructionLabel.textAlignment = .center
         instructionLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(instructionLabel)
         NSLayoutConstraint.activate([
             instructionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            instructionLabel.topAnchor.constraint(equalTo: scannerView.bottomAnchor, constant: 30),
-            instructionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            instructionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
+            instructionLabel.topAnchor.constraint(equalTo: scannerView.bottomAnchor,
+                                                  constant: LocalConstants.instructionLabelTopConstant),
+            instructionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                                      constant: LocalConstants.textViewLeadingTrailingConstant),
+            instructionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+                                                       constant: -LocalConstants.textViewLeadingTrailingConstant)
         ])
     }
     private func addEllipseView() {
@@ -92,11 +92,11 @@ class CameraViewController: UIViewController {
         path.addLine(to: CGPoint(x: view.bounds.width,
                                  y: 0))
         path.addLine(to: CGPoint(x: view.bounds.width,
-                                 y: view.bounds.height * 0.145))
+                                 y: view.bounds.height * LocalConstants.ellipseHeightMultiplier))
         path.addQuadCurve(to: CGPoint(x: 0,
-                                      y: view.bounds.height * 0.145),
+                                      y: view.bounds.height * LocalConstants.ellipseHeightMultiplier),
                           controlPoint: CGPoint(x: view.bounds.width / 2,
-                                                y: view.bounds.height * 0.185))
+                                                y: view.bounds.height * LocalConstants.ellipseControlPointMultiplier))
         path.addLine(to: CGPoint(x: 0,
                                  y: 0))
         shapeLayer.path = path.cgPath
@@ -107,19 +107,19 @@ class CameraViewController: UIViewController {
         let label = UILabel()
         label.text = "BeerApp"
         label.textColor = UIColor.textColor
-        label.font = UIFont(name: "Montserrat-Regular", size: 30)
+        label.font = Fonts.appNameFont
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 90)
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LocalConstants.labelLeadingConstant),
+            label.topAnchor.constraint(equalTo: view.topAnchor, constant: LocalConstants.labelTopConstant)
         ])
     }
 }
 
 extension CameraViewController: BarcodeScannerViewDelegate {
     func barcodeScanningDidFail() {
-        print("Scanning Failed. Please try again.")
+        log.verbose("Scanning Failed. Please try again.")
     }
     func barcodeScanningSucceededWithCode(_ str: String?) {
         print("Barcode: ", str ?? "No barcode")
@@ -132,4 +132,17 @@ extension CameraViewController: BarcodeScannerViewDelegate {
     }
 }
 
-
+private extension CameraViewController {
+    enum LocalConstants {
+        static let ellipseHeightMultiplier: CGFloat = 0.145
+        static let ellipseControlPointMultiplier: CGFloat = 0.185
+        static let cornerRadius: CGFloat = 10
+        static let scannerViewWidthHeight: CGFloat = 300
+        static let lineViewWidth: CGFloat = 250
+        static let lineViewHeight: CGFloat = 1
+        static let instructionLabelTopConstant: CGFloat = 30
+        static let textViewLeadingTrailingConstant: CGFloat = 30
+        static let labelLeadingConstant: CGFloat = 30
+        static let labelTopConstant: CGFloat = 90
+    }
+}

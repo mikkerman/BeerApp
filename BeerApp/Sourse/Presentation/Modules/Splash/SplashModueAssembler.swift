@@ -16,7 +16,7 @@ struct SplashModuleAssembler {
     static func build(coordinator: Coordinator) -> UIViewController {
         let presenter = SplashPresenter(coordinator: coordinator)
         let view = SplashViewController(presenter: presenter)
-        presenter.pushDescription(with: view)
+        presenter.pushSplash(with: view)
         return view
     }
 }

@@ -18,7 +18,7 @@ final class SplashPresenter {
     }
 
     // MARK: Public Methods
-    func pushDescription(with view: SplashViewProtocol) {
+    func pushSplash(with view: SplashViewProtocol) {
         if self.view == nil { self.view = view }
     }
 

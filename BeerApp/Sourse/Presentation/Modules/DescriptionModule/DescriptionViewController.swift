@@ -12,7 +12,12 @@ class DescriptionViewController: UIViewController {
     private let shapeLayer = CAShapeLayer()
     private let imageView = UIImageView()
     private let textView = UITextView()
-    var barCode = ""
+    private(set) var barcode = ""
+    var presenter: DescriptionPresenter? {
+        didSet {
+            presenter?.setupBarcode()
+        }
+    }
 
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
@@ -23,7 +28,10 @@ class DescriptionViewController: UIViewController {
         addBeerDescription()
         log.verbose("ViewController has loaded its view.")
     }
-
+    // MARK: - Public Methods
+    func setBarcode(_ barcode: String) {
+           self.barcode = barcode
+       }
     // MARK: - Private Methods
     private func addEllipseView() {
         let path = UIBezierPath()
@@ -64,7 +72,7 @@ class DescriptionViewController: UIViewController {
     private func addBeerDescription() {
         textView.isEditable = false
         textView.isScrollEnabled = true
-        textView.font = UIFont.systemFont(ofSize: 16)
+        textView.font = Fonts.descriptionFont
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.backgroundColor = UIColor.beerColor
 
@@ -81,7 +89,7 @@ class DescriptionViewController: UIViewController {
                                              constant: LocalConstants.textViewBottomConstant)
         ])
 
-        textView.text =  "The barcode is \(barCode)"
+        textView.text =  "The barcode is \(barcode)"
 //        """
 //        \(barCode)
 //        Наименование:

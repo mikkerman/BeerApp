@@ -27,6 +27,8 @@
 		C639BEEB29F327D5001804B1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639BEEA29F327D5001804B1 /* Coordinator.swift */; };
 		C639BEED29F3288A001804B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639BEEC29F3288A001804B1 /* Constants.swift */; };
 		C63B5CB82A0285EF00B08E76 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63B5CB72A0285EF00B08E76 /* Fonts.swift */; };
+		C68ADE6A2A31062400F69A83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C68ADE692A31062400F69A83 /* Localizable.strings */; };
+		C68ADE6C2A3257BA00F69A83 /* DescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68ADE6B2A3257BA00F69A83 /* DescriptionPresenter.swift */; };
 		C6FC350D2A052A2A001A5C57 /* UIColor+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC350C2A052A2A001A5C57 /* UIColor+AppColors.swift */; };
 		C6FC35102A052A84001A5C57 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC350F2A052A84001A5C57 /* UIColor+Hex.swift */; };
 /* End PBXBuildFile section */
@@ -54,6 +56,8 @@
 		C639BEEA29F327D5001804B1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		C639BEEC29F3288A001804B1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C63B5CB72A0285EF00B08E76 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		C68ADE692A31062400F69A83 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		C68ADE6B2A3257BA00F69A83 /* DescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionPresenter.swift; sourceTree = "<group>"; };
 		C6FC350C2A052A2A001A5C57 /* UIColor+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppColors.swift"; sourceTree = "<group>"; };
 		C6FC350F2A052A84001A5C57 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		E2DF8C3176C98B6896C12F4B /* Pods-BeerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeerApp.release.xcconfig"; path = "Target Support Files/Pods-BeerApp/Pods-BeerApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -84,7 +88,6 @@
 		C62380C829E9A128004B7091 = {
 			isa = PBXGroup;
 			children = (
-				C62EFC782A25412F00CE3789 /* Montserrat-Regular.ttf */,
 				C62380D329E9A128004B7091 /* BeerApp */,
 				C62380D229E9A128004B7091 /* Products */,
 				C39268CF9059088C7EB8B094 /* Pods */,
@@ -117,6 +120,7 @@
 				C627E1CC2A1C02AF005F53D7 /* Fonts */,
 				C62380DD29E9A12A004B7091 /* Assets.xcassets */,
 				C62380DF29E9A12A004B7091 /* LaunchScreen.storyboard */,
+				C68ADE692A31062400F69A83 /* Localizable.strings */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -200,6 +204,7 @@
 		C627E1CC2A1C02AF005F53D7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				C62EFC782A25412F00CE3789 /* Montserrat-Regular.ttf */,
 				C63B5CB72A0285EF00B08E76 /* Fonts.swift */,
 			);
 			path = Fonts;
@@ -210,6 +215,7 @@
 			children = (
 				C6281FD62A0CAB0B00D66BDE /* DescriptionViewController.swift */,
 				C6281FD82A154A9900D66BDE /* DescriptionModuleAssembler.swift */,
+				C68ADE6B2A3257BA00F69A83 /* DescriptionPresenter.swift */,
 			);
 			path = DescriptionModule;
 			sourceTree = "<group>";
@@ -306,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C62380E129E9A12A004B7091 /* LaunchScreen.storyboard in Resources */,
+				C68ADE6A2A31062400F69A83 /* Localizable.strings in Resources */,
 				C62EFC792A25412F00CE3789 /* Montserrat-Regular.ttf in Resources */,
 				C62380DE29E9A12A004B7091 /* Assets.xcassets in Resources */,
 			);
@@ -362,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C627E1CE2A1D1D88005F53D7 /* BarcodeScanner.swift in Sources */,
+				C68ADE6C2A3257BA00F69A83 /* DescriptionPresenter.swift in Sources */,
 				C6281FD92A154A9900D66BDE /* DescriptionModuleAssembler.swift in Sources */,
 				C627E1C22A1BFCD3005F53D7 /* CameraAssembler.swift in Sources */,
 				C62380D529E9A128004B7091 /* AppDelegate.swift in Sources */,

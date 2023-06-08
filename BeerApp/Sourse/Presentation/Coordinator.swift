@@ -32,11 +32,10 @@ final class Coordinator {
         window?.rootViewController = cameraViewController
     }
     func showDescriptionWithBarcode(_ barcode: String, from sourceVC: UIViewController) {
-        print("showDescriptionWithBarcode called with barcode: \(barcode)")
-        let descriptionViewController = moduleFactory.buildDescriptionModuleWithBarcode(barcode)
-        sourceVC.present(descriptionViewController, animated: true, completion: nil)
+        log.verbose("showDescriptionWithBarcode called with barcode: \(barcode)")
+        let descriptionViewController = moduleFactory.buildDescriptionModuleWithBarcode(barcode, coordinator: self)
+        sourceVC.present(descriptionViewController,
+                         animated: true,
+                         completion: nil)
     }
-
-
-
 }

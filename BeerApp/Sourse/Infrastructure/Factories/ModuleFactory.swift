@@ -24,16 +24,7 @@ final class ModuleFactory {
         return CameraModuleAssembler.build(coordinator: coordinator)
     }
 
-    func buildDescriptionModuleWithBarcode(_ barcode: String) -> UIViewController {
-        let descriptionViewController = DescriptionModuleAssembler.build(barcode: barcode)
-        return descriptionViewController
+    func buildDescriptionModuleWithBarcode(_ barcode: String, coordinator: Coordinator) -> UIViewController {
+        return DescriptionModuleAssembler.build(barcode: barcode, coordinator: coordinator)
     }
-    func buildDescriptionModule(barcode: String) -> DescriptionViewController {
-        let viewController = DescriptionViewController()
-        viewController.barCode = barcode
-        return viewController
-    }
-
-
-    // MARK: Private methods
 }
