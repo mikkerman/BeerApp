@@ -34,6 +34,7 @@ final class Coordinator {
     func showDescriptionWithBarcode(_ barcode: String, from sourceVC: UIViewController) {
         log.verbose("showDescriptionWithBarcode called with barcode: \(barcode)")
         let descriptionViewController = moduleFactory.buildDescriptionModuleWithBarcode(barcode, coordinator: self)
+        descriptionViewController.modalPresentationStyle = .fullScreen
         sourceVC.present(descriptionViewController,
                          animated: true,
                          completion: nil)
