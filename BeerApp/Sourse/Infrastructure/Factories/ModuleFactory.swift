@@ -24,7 +24,8 @@ final class ModuleFactory {
         return CameraModuleAssembler.build(coordinator: coordinator)
     }
 
-    func buildDescriptionModuleWithBarcode(_ barcode: String, coordinator: Coordinator) -> UIViewController {
+    func buildDescriptionModuleWithBarcode(_ barcode: String,
+                                           coordinator: Coordinator) -> UIViewController {
         return DescriptionModuleAssembler.build(barcode: barcode, coordinator: coordinator)
     }
 }

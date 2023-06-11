@@ -89,24 +89,6 @@ class DescriptionViewController: UIViewController {
                                              constant: LocalConstants.textViewBottomConstant)
         ])
 
-        textView.text =  "The barcode is \(barcode)"
-//        """
-//        \(barCode)
-//        Наименование:
-//        Guinness Draught
-//        Пивоварня:
-//        Guinness
-//        Стиль пива:
-//        Stout
-//        Содержание алкоголя:
-//        4.2%
-//        Горечь(IBU):
-//        45
-//        Страна происхождения:
-//        Ireland
-//        Описание:
-//        Black, medium-bodied, cloudy, with a rich head, medium hopped, toasted malt notes, espresso-like, coffee notes.
-//        """
     }
 }
 

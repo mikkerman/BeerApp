@@ -9,8 +9,6 @@ import UIKit
 
 class CameraModuleAssembler {
     static func build(coordinator: Coordinator) -> CameraViewController {
-        let viewController = CameraViewController(coordinator: coordinator)
-        return viewController
+        return CameraViewController(coordinator: coordinator)
     }
-
 }

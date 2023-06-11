@@ -13,7 +13,8 @@ final class DescriptionPresenter {
     private let coordinator: Coordinator
     private let barcode: String
     // MARK: Init
-    init(coordinator: Coordinator, barcode: String) {
+    init(coordinator: Coordinator,
+         barcode: String) {
         self.coordinator = coordinator
         self.barcode = barcode
     }

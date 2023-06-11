@@ -7,33 +7,39 @@
 import AVFoundation
 import UIKit
 
-// MARK: - BarcodeScannerViewDelegate Protocol
+    // MARK: - BarcodeScannerViewDelegate Protocol
 protocol BarcodeScannerViewDelegate: AnyObject {
     func barcodeScanningDidFail()
     func barcodeScanningSucceededWithCode(_ str: String?)
     func barcodeScanningDidStop()
 }
-// MARK: - BarcodeScannerView
+
+    // MARK: - BarcodeScannerView
 class BarcodeScannerView: UIView {
+    
     // MARK: - Public Properties
     weak var delegate: BarcodeScannerViewDelegate?
+    
     // MARK: - Private Properties
     private var captureSession = AVCaptureSession()
+    
     // MARK: - Computed Properties
     lazy var previewLayer: AVCaptureVideoPreviewLayer = {
         let layer = AVCaptureVideoPreviewLayer(session: captureSession)
         return layer
     }()
+    
     // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupCaptureSession()
     }
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupCaptureSession()
     }
+    
     // MARK: - Public Methods
     func startScanning() {
         DispatchQueue.global(qos: .userInitiated).async {
@@ -46,6 +52,7 @@ class BarcodeScannerView: UIView {
             self.captureSession.stopRunning()
         }
     }
+    
     // MARK: - Private Methods
     private func setupCaptureSession() {
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
@@ -71,13 +78,13 @@ class BarcodeScannerView: UIView {
             delegate?.barcodeScanningDidFail()
             return
         }
-        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.frame = layer.bounds
         previewLayer.videoGravity = .resizeAspectFill
         layer.addSublayer(previewLayer)
     }
 }
-// MARK: - AVCaptureMetadataOutputObjectsDelegate
+
+    // MARK: - AVCaptureMetadataOutputObjectsDelegate
 extension BarcodeScannerView: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput,
                         didOutput metadataObjects: [AVMetadataObject],

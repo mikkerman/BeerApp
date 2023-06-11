@@ -27,7 +27,7 @@ class CameraViewController: UIViewController {
         view.backgroundColor = UIColor.beerColor
         addEllipseView()
         setupLabel()
-        setupScannerView()
+        setupView()
         log.verbose("ViewController has loaded its view.")
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -41,20 +41,16 @@ class CameraViewController: UIViewController {
     }
 
     // MARK: - Private Methods
-    private func setupScannerView() {
-        scannerView = BarcodeScannerView()
-        scannerView.layer.cornerRadius = LocalConstants.cornerRadius
-        scannerView.layer.masksToBounds = true
-        scannerView.delegate = self
-        scannerView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(scannerView)
+    private func setupView() {
+        scannerView = BarcodeScannerView(frame: CGRect(x: view.frame.midX - LocalConstants.scannerViewWidth / 2,
+                                                       y: view.frame.midY - LocalConstants.scannerViewHeight / 2 ,
+                                                       width: LocalConstants.scannerViewWidth,
+                                                       height: LocalConstants.scannerViewHeight))
+         scannerView.layer.cornerRadius = 10
+         scannerView.layer.masksToBounds = true
+         scannerView.delegate = self
+         view.addSubview(scannerView)
 
-        NSLayoutConstraint.activate([
-            scannerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            scannerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            scannerView.widthAnchor.constraint(equalToConstant: LocalConstants.scannerViewWidthHeight),
-            scannerView.heightAnchor.constraint(equalToConstant: LocalConstants.scannerViewWidthHeight * 1.5)
-        ])
         let lineView = UIView()
         lineView.backgroundColor = .red
         lineView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +63,7 @@ class CameraViewController: UIViewController {
         ])
 
         let instructionLabel = UILabel()
-        instructionLabel.text = NSLocalizedString("instructionLabelText", comment: "")
+        instructionLabel.text = Strings.instructionLabelText
         instructionLabel.textColor = UIColor.textColor
         instructionLabel.font = Fonts.instructionLabelFont
         instructionLabel.numberOfLines = 0
@@ -105,7 +101,7 @@ class CameraViewController: UIViewController {
     }
     private func setupLabel() {
         let label = UILabel()
-        label.text = "BeerApp"
+        label.text = Strings.appTitle
         label.textColor = UIColor.textColor
         label.font = Fonts.appNameFont
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -137,7 +133,8 @@ private extension CameraViewController {
         static let ellipseHeightMultiplier: CGFloat = 0.145
         static let ellipseControlPointMultiplier: CGFloat = 0.185
         static let cornerRadius: CGFloat = 10
-        static let scannerViewWidthHeight: CGFloat = 300
+        static let scannerViewWidth: CGFloat = 300
+        static let scannerViewHeight: CGFloat = 300
         static let lineViewWidth: CGFloat = 250
         static let lineViewHeight: CGFloat = 1
         static let instructionLabelTopConstant: CGFloat = 30

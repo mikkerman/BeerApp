@@ -29,6 +29,7 @@
 		C63B5CB82A0285EF00B08E76 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63B5CB72A0285EF00B08E76 /* Fonts.swift */; };
 		C68ADE6A2A31062400F69A83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C68ADE692A31062400F69A83 /* Localizable.strings */; };
 		C68ADE6C2A3257BA00F69A83 /* DescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68ADE6B2A3257BA00F69A83 /* DescriptionPresenter.swift */; };
+		C68ADE6E2A36374000F69A83 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68ADE6D2A36374000F69A83 /* Strings.swift */; };
 		C6FC350D2A052A2A001A5C57 /* UIColor+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC350C2A052A2A001A5C57 /* UIColor+AppColors.swift */; };
 		C6FC35102A052A84001A5C57 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC350F2A052A84001A5C57 /* UIColor+Hex.swift */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,7 @@
 		C63B5CB72A0285EF00B08E76 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		C68ADE692A31062400F69A83 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		C68ADE6B2A3257BA00F69A83 /* DescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionPresenter.swift; sourceTree = "<group>"; };
+		C68ADE6D2A36374000F69A83 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		C6FC350C2A052A2A001A5C57 /* UIColor+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppColors.swift"; sourceTree = "<group>"; };
 		C6FC350F2A052A84001A5C57 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		E2DF8C3176C98B6896C12F4B /* Pods-BeerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeerApp.release.xcconfig"; path = "Target Support Files/Pods-BeerApp/Pods-BeerApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				C62380DD29E9A12A004B7091 /* Assets.xcassets */,
 				C62380DF29E9A12A004B7091 /* LaunchScreen.storyboard */,
 				C68ADE692A31062400F69A83 /* Localizable.strings */,
+				C68ADE6D2A36374000F69A83 /* Strings.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				C6281FD92A154A9900D66BDE /* DescriptionModuleAssembler.swift in Sources */,
 				C627E1C22A1BFCD3005F53D7 /* CameraAssembler.swift in Sources */,
 				C62380D529E9A128004B7091 /* AppDelegate.swift in Sources */,
+				C68ADE6E2A36374000F69A83 /* Strings.swift in Sources */,
 				C639BEE829F326B7001804B1 /* ModuleFactory.swift in Sources */,
 				C639BEEB29F327D5001804B1 /* Coordinator.swift in Sources */,
 				C6FC350D2A052A2A001A5C57 /* UIColor+AppColors.swift in Sources */,
