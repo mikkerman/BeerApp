@@ -18,4 +18,3 @@ enum Strings {
     static let countryOfOriginLabel = NSLocalizedString("countryOfOriginLabel", comment: "")
     static let descriptionLabel = NSLocalizedString("descriptionLabel", comment: "")
 }
-

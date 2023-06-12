@@ -43,7 +43,7 @@ class CameraViewController: UIViewController {
     // MARK: - Private Methods
     private func setupView() {
         scannerView = BarcodeScannerView(frame: CGRect(x: view.frame.midX - LocalConstants.scannerViewWidth / 2,
-                                                       y: view.frame.midY - LocalConstants.scannerViewHeight / 2 ,
+                                                       y: view.frame.midY - LocalConstants.scannerViewHeight / 2,
                                                        width: LocalConstants.scannerViewWidth,
                                                        height: LocalConstants.scannerViewHeight))
          scannerView.layer.cornerRadius = 10

@@ -22,10 +22,6 @@ final class DescriptionPresenter {
     func attachView(_ viewController: DescriptionViewController) {
         if self.viewController == nil {
             self.viewController = viewController
-            setupBarcode()
         }
-    }
-    func setupBarcode() {
-        viewController?.setBarcode(barcode)
     }
 }

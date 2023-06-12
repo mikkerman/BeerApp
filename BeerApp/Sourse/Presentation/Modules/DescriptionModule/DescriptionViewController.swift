@@ -12,12 +12,7 @@ class DescriptionViewController: UIViewController {
     private let shapeLayer = CAShapeLayer()
     private let imageView = UIImageView()
     private let textView = UITextView()
-    private(set) var barcode = ""
-    var presenter: DescriptionPresenter? {
-        didSet {
-            presenter?.setupBarcode()
-        }
-    }
+    var presenter: DescriptionPresenter?
 
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
@@ -28,10 +23,6 @@ class DescriptionViewController: UIViewController {
         addBeerDescription()
         log.verbose("ViewController has loaded its view.")
     }
-    // MARK: - Public Methods
-    func setBarcode(_ barcode: String) {
-           self.barcode = barcode
-       }
     // MARK: - Private Methods
     private func addEllipseView() {
         let path = UIBezierPath()
@@ -75,7 +66,6 @@ class DescriptionViewController: UIViewController {
         textView.font = Fonts.descriptionFont
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.backgroundColor = UIColor.beerColor
-
         view.addSubview(textView)
 
         NSLayoutConstraint.activate([
