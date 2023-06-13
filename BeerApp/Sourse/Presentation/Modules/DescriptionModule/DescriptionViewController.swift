@@ -78,7 +78,6 @@ class DescriptionViewController: UIViewController {
             textView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
                                              constant: LocalConstants.textViewBottomConstant)
         ])
-
     }
 }
 

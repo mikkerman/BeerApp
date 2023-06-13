@@ -46,7 +46,7 @@ class CameraViewController: UIViewController {
                                                        y: view.frame.midY - LocalConstants.scannerViewHeight / 2,
                                                        width: LocalConstants.scannerViewWidth,
                                                        height: LocalConstants.scannerViewHeight))
-         scannerView.layer.cornerRadius = 10
+        scannerView.layer.cornerRadius = LocalConstants.cornerRadius
          scannerView.layer.masksToBounds = true
          scannerView.delegate = self
          view.addSubview(scannerView)
@@ -118,13 +118,13 @@ extension CameraViewController: BarcodeScannerViewDelegate {
         log.verbose("Scanning Failed. Please try again.")
     }
     func barcodeScanningSucceededWithCode(_ str: String?) {
-        print("Barcode: ", str ?? "No barcode")
+        log.verbose("Barcode: ")
         if let barcode = str {
             coordinator.showDescriptionWithBarcode(barcode, from: self)
         }
     }
     func barcodeScanningDidStop() {
-        print("Scanning stopped")
+        log.verbose("Scanning stopped")
     }
 }
 
