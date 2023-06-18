@@ -12,6 +12,7 @@ class DescriptionViewController: UIViewController {
     private let shapeLayer = CAShapeLayer()
     private let imageView = UIImageView()
     private let textView = UITextView()
+    var presenter: DescriptionPresenter?
 
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
@@ -22,7 +23,6 @@ class DescriptionViewController: UIViewController {
         addBeerDescription()
         log.verbose("ViewController has loaded its view.")
     }
-
     // MARK: - Private Methods
     private func addEllipseView() {
         let path = UIBezierPath()
@@ -63,10 +63,9 @@ class DescriptionViewController: UIViewController {
     private func addBeerDescription() {
         textView.isEditable = false
         textView.isScrollEnabled = true
-        textView.font = UIFont.systemFont(ofSize: 16)
+        textView.font = Fonts.descriptionFont
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.backgroundColor = UIColor.beerColor
-
         view.addSubview(textView)
 
         NSLayoutConstraint.activate([
@@ -79,23 +78,6 @@ class DescriptionViewController: UIViewController {
             textView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
                                              constant: LocalConstants.textViewBottomConstant)
         ])
-
-        textView.text = """
-        Наименование:
-        Guinness Draught
-        Пивоварня:
-        Guinness
-        Стиль пива:
-        Stout
-        Содержание алкоголя:
-        4.2%
-        Горечь(IBU):
-        45
-        Страна происхождения:
-        Ireland
-        Описание:
-        Black, medium-bodied, cloudy, with a rich head, medium hopped, toasted malt notes, espresso-like, coffee notes.
-        """
     }
 }
 

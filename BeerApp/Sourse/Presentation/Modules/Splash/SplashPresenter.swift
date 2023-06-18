@@ -18,11 +18,11 @@ final class SplashPresenter {
     }
 
     // MARK: Public Methods
-    func pushDescription(with view: SplashViewProtocol) {
+    func attachSplash(with view: SplashViewProtocol) {
         if self.view == nil { self.view = view }
     }
 
     func viewWillAppear() {
-        coordinator.showDescription()
+        coordinator.showCamera()
     }
 }

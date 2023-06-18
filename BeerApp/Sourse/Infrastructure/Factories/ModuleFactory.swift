@@ -20,8 +20,12 @@ final class ModuleFactory {
         guard let coordinator = coordinator else { return UIViewController() }
         return SplashModuleAssembler.build(coordinator: coordinator)
     }
-    func buildDescriptionModule() -> UIViewController {
-        return DescriptionModuleAssembler.build()
+    func buildCameraModule(coordinator: Coordinator) -> UIViewController {
+        return CameraModuleAssembler.build(coordinator: coordinator)
     }
-    // MARK: Private methods
+
+    func buildDescriptionModuleWithBarcode(_ barcode: String,
+                                           coordinator: Coordinator) -> UIViewController {
+        return DescriptionModuleAssembler.build(barcode: barcode, coordinator: coordinator)
+    }
 }

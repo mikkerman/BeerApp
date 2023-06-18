@@ -27,8 +27,16 @@ final class Coordinator {
         window?.rootViewController = splashViewController
         window?.makeKeyAndVisible()
     }
-    func showDescription() {
-        let descriptionViewController = moduleFactory.buildDescriptionModule()
-        window?.rootViewController = descriptionViewController
+    func showCamera() {
+        let cameraViewController = moduleFactory.buildCameraModule(coordinator: self)
+        window?.rootViewController = cameraViewController
+    }
+    func showDescriptionWithBarcode(_ barcode: String, from sourceVC: UIViewController) {
+        log.verbose("showDescriptionWithBarcode called with barcode: \(barcode)")
+        let descriptionViewController = moduleFactory.buildDescriptionModuleWithBarcode(barcode, coordinator: self)
+        descriptionViewController.modalPresentationStyle = .fullScreen
+        sourceVC.present(descriptionViewController,
+                         animated: true,
+                         completion: nil)
     }
 }
