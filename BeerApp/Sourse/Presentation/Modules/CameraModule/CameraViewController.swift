@@ -6,21 +6,22 @@
 //
 
 import UIKit
-import AVFoundation
 
-class CameraViewController: UIViewController {
-
+final class CameraViewController: UIViewController {
+    
     // MARK: - Properties
     var scannerView = BarcodeScannerView(frame: .zero)
     var coordinator: Coordinator
+    var networkService: NetworkService // Добавлено свойство для NetworkService
     init(coordinator: Coordinator) {
         self.coordinator = coordinator
+        self.networkService = NetworkService()
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,12 +35,11 @@ class CameraViewController: UIViewController {
         super.viewWillAppear(animated)
         scannerView.startScanning()
     }
-
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         scannerView.stopScanning()
     }
-
+    
     // MARK: - Private Methods
     private func setupView() {
         scannerView = BarcodeScannerView(frame: CGRect(x: view.frame.midX - LocalConstants.scannerViewWidth / 2,
@@ -47,10 +47,9 @@ class CameraViewController: UIViewController {
                                                        width: LocalConstants.scannerViewWidth,
                                                        height: LocalConstants.scannerViewHeight))
         scannerView.layer.cornerRadius = LocalConstants.cornerRadius
-         scannerView.layer.masksToBounds = true
-         scannerView.delegate = self
-         view.addSubview(scannerView)
-
+        scannerView.layer.masksToBounds = true
+        scannerView.delegate = self
+        view.addSubview(scannerView)
         let lineView = UIView()
         lineView.backgroundColor = .red
         lineView.translatesAutoresizingMaskIntoConstraints = false
@@ -61,7 +60,6 @@ class CameraViewController: UIViewController {
             lineView.widthAnchor.constraint(equalToConstant: LocalConstants.lineViewWidth),
             lineView.heightAnchor.constraint(equalToConstant: LocalConstants.lineViewHeight)
         ])
-
         let instructionLabel = UILabel()
         instructionLabel.text = Strings.instructionLabelText
         instructionLabel.textColor = UIColor.textColor
@@ -83,18 +81,14 @@ class CameraViewController: UIViewController {
     private func addEllipseView() {
         let shapeLayer = CAShapeLayer()
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: 0,
-                              y: 0))
-        path.addLine(to: CGPoint(x: view.bounds.width,
-                                 y: 0))
-        path.addLine(to: CGPoint(x: view.bounds.width,
-                                 y: view.bounds.height * LocalConstants.ellipseHeightMultiplier))
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: view.bounds.width, y: 0))
+        path.addLine(to: CGPoint(x: view.bounds.width, y: view.bounds.height * LocalConstants.ellipseHeightMultiplier))
         path.addQuadCurve(to: CGPoint(x: 0,
                                       y: view.bounds.height * LocalConstants.ellipseHeightMultiplier),
                           controlPoint: CGPoint(x: view.bounds.width / 2,
                                                 y: view.bounds.height * LocalConstants.ellipseControlPointMultiplier))
-        path.addLine(to: CGPoint(x: 0,
-                                 y: 0))
+        path.addLine(to: CGPoint(x: 0, y: 0))
         shapeLayer.path = path.cgPath
         shapeLayer.fillColor = UIColor.white.withAlphaComponent(0.8).cgColor
         view.layer.addSublayer(shapeLayer)
@@ -120,8 +114,19 @@ extension CameraViewController: BarcodeScannerViewDelegate {
     func barcodeScanningSucceededWithCode(_ str: String?) {
         log.verbose("Barcode: ")
         if let barcode = str {
-            coordinator.showDescriptionWithBarcode(barcode, from: self)
+            networkService.fetchBeerDescription(for: barcode) { [weak self] result in
+                switch result {
+                case .success(let description):
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self = self else { return }
+                        self.coordinator.showDescriptionWithBarcode(description, from: self)
+                    }
+                case .failure(let error):
+                    log.error("Error fetching beer description: \(error.localizedDescription)")
+                }
+            }
         }
+
     }
     func barcodeScanningDidStop() {
         log.verbose("Scanning stopped")

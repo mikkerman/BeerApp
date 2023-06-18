@@ -30,6 +30,7 @@
 		C68ADE6A2A31062400F69A83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C68ADE692A31062400F69A83 /* Localizable.strings */; };
 		C68ADE6C2A3257BA00F69A83 /* DescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68ADE6B2A3257BA00F69A83 /* DescriptionPresenter.swift */; };
 		C68ADE6E2A36374000F69A83 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68ADE6D2A36374000F69A83 /* Strings.swift */; };
+		C6B97B6A2A3F8FB0000F0483 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B97B692A3F8FB0000F0483 /* NetworkService.swift */; };
 		C6FC350D2A052A2A001A5C57 /* UIColor+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC350C2A052A2A001A5C57 /* UIColor+AppColors.swift */; };
 		C6FC35102A052A84001A5C57 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC350F2A052A84001A5C57 /* UIColor+Hex.swift */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		C68ADE692A31062400F69A83 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		C68ADE6B2A3257BA00F69A83 /* DescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionPresenter.swift; sourceTree = "<group>"; };
 		C68ADE6D2A36374000F69A83 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		C6B97B692A3F8FB0000F0483 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C6FC350C2A052A2A001A5C57 /* UIColor+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppColors.swift"; sourceTree = "<group>"; };
 		C6FC350F2A052A84001A5C57 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		E2DF8C3176C98B6896C12F4B /* Pods-BeerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeerApp.release.xcconfig"; path = "Target Support Files/Pods-BeerApp/Pods-BeerApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		C62380EA29EB2CF7004B7091 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				C6B97B682A3F8F85000F0483 /* NetworkServices */,
 				C639BEE629F3269C001804B1 /* Factories */,
 				C639BEE529F3265A001804B1 /* Extensions */,
 				C62380ED29EB2D6C004B7091 /* Application */,
@@ -238,6 +241,14 @@
 				C639BEE729F326B7001804B1 /* ModuleFactory.swift */,
 			);
 			path = Factories;
+			sourceTree = "<group>";
+		};
+		C6B97B682A3F8F85000F0483 /* NetworkServices */ = {
+			isa = PBXGroup;
+			children = (
+				C6B97B692A3F8FB0000F0483 /* NetworkService.swift */,
+			);
+			path = NetworkServices;
 			sourceTree = "<group>";
 		};
 		EB1DB8CF8E9C4B40C536F244 /* Frameworks */ = {
@@ -381,6 +392,7 @@
 				C639BEEB29F327D5001804B1 /* Coordinator.swift in Sources */,
 				C6FC350D2A052A2A001A5C57 /* UIColor+AppColors.swift in Sources */,
 				C6281FDE2A168F9B00D66BDE /* AppLogger.swift in Sources */,
+				C6B97B6A2A3F8FB0000F0483 /* NetworkService.swift in Sources */,
 				C62380D729E9A128004B7091 /* SceneDelegate.swift in Sources */,
 				C62380F429EB2ED5004B7091 /* SplashModueAssembler.swift in Sources */,
 				C62380F229EB2EBA004B7091 /* SplashViewController.swift in Sources */,
