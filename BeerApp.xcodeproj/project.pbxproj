@@ -31,6 +31,7 @@
 		C68ADE6C2A3257BA00F69A83 /* DescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68ADE6B2A3257BA00F69A83 /* DescriptionPresenter.swift */; };
 		C68ADE6E2A36374000F69A83 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68ADE6D2A36374000F69A83 /* Strings.swift */; };
 		C6B97B6A2A3F8FB0000F0483 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B97B692A3F8FB0000F0483 /* NetworkService.swift */; };
+		C6B97B6C2A4222DD000F0483 /* CameraPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B97B6B2A4222DD000F0483 /* CameraPresenter.swift */; };
 		C6FC350D2A052A2A001A5C57 /* UIColor+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC350C2A052A2A001A5C57 /* UIColor+AppColors.swift */; };
 		C6FC35102A052A84001A5C57 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC350F2A052A84001A5C57 /* UIColor+Hex.swift */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 		C68ADE6B2A3257BA00F69A83 /* DescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionPresenter.swift; sourceTree = "<group>"; };
 		C68ADE6D2A36374000F69A83 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		C6B97B692A3F8FB0000F0483 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		C6B97B6B2A4222DD000F0483 /* CameraPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPresenter.swift; sourceTree = "<group>"; };
 		C6FC350C2A052A2A001A5C57 /* UIColor+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppColors.swift"; sourceTree = "<group>"; };
 		C6FC350F2A052A84001A5C57 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		E2DF8C3176C98B6896C12F4B /* Pods-BeerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeerApp.release.xcconfig"; path = "Target Support Files/Pods-BeerApp/Pods-BeerApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			children = (
 				C627E1BF2A1BFCC2005F53D7 /* CameraViewController.swift */,
 				C627E1C12A1BFCD3005F53D7 /* CameraAssembler.swift */,
+				C6B97B6B2A4222DD000F0483 /* CameraPresenter.swift */,
 			);
 			path = CameraModule;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6B97B6C2A4222DD000F0483 /* CameraPresenter.swift in Sources */,
 				C627E1CE2A1D1D88005F53D7 /* BarcodeScanner.swift in Sources */,
 				C68ADE6C2A3257BA00F69A83 /* DescriptionPresenter.swift in Sources */,
 				C6281FD92A154A9900D66BDE /* DescriptionModuleAssembler.swift in Sources */,

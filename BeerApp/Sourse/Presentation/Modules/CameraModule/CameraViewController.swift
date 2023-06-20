@@ -10,14 +10,14 @@ import UIKit
 final class CameraViewController: UIViewController {
     
     // MARK: - Properties
-    var scannerView = BarcodeScannerView(frame: .zero)
-    var coordinator: Coordinator
-    var networkService: NetworkService // Добавлено свойство для NetworkService
-    init(coordinator: Coordinator) {
-        self.coordinator = coordinator
-        self.networkService = NetworkService()
+    private var scannerView = BarcodeScannerView(frame: .zero)
+    private var presenter: CameraPresenterProtocol
+    
+    init(presenter: CameraPresenterProtocol) {
+        self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -31,10 +31,12 @@ final class CameraViewController: UIViewController {
         setupView()
         log.verbose("ViewController has loaded its view.")
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         scannerView.startScanning()
     }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         scannerView.stopScanning()
@@ -50,6 +52,7 @@ final class CameraViewController: UIViewController {
         scannerView.layer.masksToBounds = true
         scannerView.delegate = self
         view.addSubview(scannerView)
+        
         let lineView = UIView()
         lineView.backgroundColor = .red
         lineView.translatesAutoresizingMaskIntoConstraints = false
@@ -60,6 +63,7 @@ final class CameraViewController: UIViewController {
             lineView.widthAnchor.constraint(equalToConstant: LocalConstants.lineViewWidth),
             lineView.heightAnchor.constraint(equalToConstant: LocalConstants.lineViewHeight)
         ])
+        
         let instructionLabel = UILabel()
         instructionLabel.text = Strings.instructionLabelText
         instructionLabel.textColor = UIColor.textColor
@@ -78,14 +82,14 @@ final class CameraViewController: UIViewController {
                                                        constant: -LocalConstants.textViewLeadingTrailingConstant)
         ])
     }
+    
     private func addEllipseView() {
         let shapeLayer = CAShapeLayer()
         let path = UIBezierPath()
         path.move(to: CGPoint(x: 0, y: 0))
         path.addLine(to: CGPoint(x: view.bounds.width, y: 0))
         path.addLine(to: CGPoint(x: view.bounds.width, y: view.bounds.height * LocalConstants.ellipseHeightMultiplier))
-        path.addQuadCurve(to: CGPoint(x: 0,
-                                      y: view.bounds.height * LocalConstants.ellipseHeightMultiplier),
+        path.addQuadCurve(to: CGPoint(x: 0, y: view.bounds.height * LocalConstants.ellipseHeightMultiplier),
                           controlPoint: CGPoint(x: view.bounds.width / 2,
                                                 y: view.bounds.height * LocalConstants.ellipseControlPointMultiplier))
         path.addLine(to: CGPoint(x: 0, y: 0))
@@ -93,6 +97,7 @@ final class CameraViewController: UIViewController {
         shapeLayer.fillColor = UIColor.white.withAlphaComponent(0.8).cgColor
         view.layer.addSublayer(shapeLayer)
     }
+    
     private func setupLabel() {
         let label = UILabel()
         label.text = Strings.appTitle
@@ -111,23 +116,14 @@ extension CameraViewController: BarcodeScannerViewDelegate {
     func barcodeScanningDidFail() {
         log.verbose("Scanning Failed. Please try again.")
     }
+    
     func barcodeScanningSucceededWithCode(_ str: String?) {
         log.verbose("Barcode: ")
         if let barcode = str {
-            networkService.fetchBeerDescription(for: barcode) { [weak self] result in
-                switch result {
-                case .success(let description):
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self = self else { return }
-                        self.coordinator.showDescriptionWithBarcode(description, from: self)
-                    }
-                case .failure(let error):
-                    log.error("Error fetching beer description: \(error.localizedDescription)")
-                }
-            }
+            presenter.showDescriptionWithBarcode(barcode)
         }
-
     }
+    
     func barcodeScanningDidStop() {
         log.verbose("Scanning stopped")
     }

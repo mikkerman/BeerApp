@@ -7,24 +7,15 @@
 
 import Foundation
 
-class NetworkService {
-    func fetchBeerDescription(for barcode: String, completion: @escaping (Result<String, Error>) -> Void) {
-        let urlString = "https://run.mocky.io/v3/7f6091a5-f415-4a49-94cd-4b6674bf115a"
-        guard let url = URL(string: urlString) else {
-            completion(.failure(NetworkError.invalidURL))
-            return
-        }
-        let requestBody = ["barcode": barcode]
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: requestBody, options: [])
-            request.httpBody = jsonData
-        } catch {
-            completion(.failure(NetworkError.serializationError))
-            return
-        }
+protocol Networking {
+    func fetchBeerDescription(with request: URLRequest, completion: @escaping (Result<BeerDescription, Error>) -> Void)
+}
+
+final class NetworkService: Networking {
+    private let baseURL = URL(string: "https://run.mocky.io/v3/")!
+    private let beerDescriptionPath = "7f6091a5-f415-4a49-94cd-4b6674bf115a"
+    
+    func fetchBeerDescription(with request: URLRequest, completion: @escaping (Result<BeerDescription, Error>) -> Void) {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 completion(.failure(error))
@@ -39,12 +30,10 @@ class NetworkService {
                 return
             }
             do {
-                let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                if let description = json?["description"] as? String {
-                    completion(.success(description))
-                } else {
-                    completion(.failure(NetworkError.invalidData))
-                }
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let beerDescription = try decoder.decode(BeerDescription.self, from: data)
+                completion(.success(beerDescription))
             } catch {
                 completion(.failure(error))
             }
@@ -53,10 +42,20 @@ class NetworkService {
     }
 }
 
+struct BeerDescription: Codable {
+    let id: String
+    let name: String
+    let brewery: String
+    let beerStyle: String
+    let alcoholContent: String
+    let bitternessIBU: String
+    let countryOfOrigin: String
+    let description: String
+    let barcode: String
+}
+
+
 enum NetworkError: Error {
-    case invalidURL
-    case serializationError
     case invalidResponse
     case noData
-    case invalidData
 }
