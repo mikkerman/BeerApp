@@ -32,6 +32,9 @@
 		C68ADE6E2A36374000F69A83 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68ADE6D2A36374000F69A83 /* Strings.swift */; };
 		C6B97B6A2A3F8FB0000F0483 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B97B692A3F8FB0000F0483 /* NetworkService.swift */; };
 		C6B97B6C2A4222DD000F0483 /* CameraPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B97B6B2A4222DD000F0483 /* CameraPresenter.swift */; };
+		C6B97B6F2A44DD66000F0483 /* BeerDescriptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B97B6E2A44DD66000F0483 /* BeerDescriptionModel.swift */; };
+		C6B97B722A44E77A000F0483 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B97B712A44E77A000F0483 /* APIConstants.swift */; };
+		C6B97B752A455F3B000F0483 /* BeerDescriptionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B97B742A455F3B000F0483 /* BeerDescriptionRepository.swift */; };
 		C6FC350D2A052A2A001A5C57 /* UIColor+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC350C2A052A2A001A5C57 /* UIColor+AppColors.swift */; };
 		C6FC35102A052A84001A5C57 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC350F2A052A84001A5C57 /* UIColor+Hex.swift */; };
 /* End PBXBuildFile section */
@@ -64,6 +67,9 @@
 		C68ADE6D2A36374000F69A83 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		C6B97B692A3F8FB0000F0483 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C6B97B6B2A4222DD000F0483 /* CameraPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPresenter.swift; sourceTree = "<group>"; };
+		C6B97B6E2A44DD66000F0483 /* BeerDescriptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDescriptionModel.swift; sourceTree = "<group>"; };
+		C6B97B712A44E77A000F0483 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		C6B97B742A455F3B000F0483 /* BeerDescriptionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDescriptionRepository.swift; sourceTree = "<group>"; };
 		C6FC350C2A052A2A001A5C57 /* UIColor+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppColors.swift"; sourceTree = "<group>"; };
 		C6FC350F2A052A84001A5C57 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		E2DF8C3176C98B6896C12F4B /* Pods-BeerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeerApp.release.xcconfig"; path = "Target Support Files/Pods-BeerApp/Pods-BeerApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +151,8 @@
 		C62380EA29EB2CF7004B7091 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				C6B97B732A455F0A000F0483 /* Repositories */,
+				C6B97B702A44E749000F0483 /* APIConstants */,
 				C6B97B682A3F8F85000F0483 /* NetworkServices */,
 				C639BEE629F3269C001804B1 /* Factories */,
 				C639BEE529F3265A001804B1 /* Extensions */,
@@ -157,7 +165,7 @@
 		C62380EB29EB2D0F004B7091 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				C627E1CD2A1D1D88005F53D7 /* BarcodeScanner.swift */,
+				C6B97B6D2A44DD2F000F0483 /* BarcodeScanner */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -252,6 +260,31 @@
 				C6B97B692A3F8FB0000F0483 /* NetworkService.swift */,
 			);
 			path = NetworkServices;
+			sourceTree = "<group>";
+		};
+		C6B97B6D2A44DD2F000F0483 /* BarcodeScanner */ = {
+			isa = PBXGroup;
+			children = (
+				C627E1CD2A1D1D88005F53D7 /* BarcodeScanner.swift */,
+				C6B97B6E2A44DD66000F0483 /* BeerDescriptionModel.swift */,
+			);
+			path = BarcodeScanner;
+			sourceTree = "<group>";
+		};
+		C6B97B702A44E749000F0483 /* APIConstants */ = {
+			isa = PBXGroup;
+			children = (
+				C6B97B712A44E77A000F0483 /* APIConstants.swift */,
+			);
+			path = APIConstants;
+			sourceTree = "<group>";
+		};
+		C6B97B732A455F0A000F0483 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				C6B97B742A455F3B000F0483 /* BeerDescriptionRepository.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		EB1DB8CF8E9C4B40C536F244 /* Frameworks */ = {
@@ -387,8 +420,11 @@
 			files = (
 				C6B97B6C2A4222DD000F0483 /* CameraPresenter.swift in Sources */,
 				C627E1CE2A1D1D88005F53D7 /* BarcodeScanner.swift in Sources */,
+				C6B97B722A44E77A000F0483 /* APIConstants.swift in Sources */,
 				C68ADE6C2A3257BA00F69A83 /* DescriptionPresenter.swift in Sources */,
+				C6B97B752A455F3B000F0483 /* BeerDescriptionRepository.swift in Sources */,
 				C6281FD92A154A9900D66BDE /* DescriptionModuleAssembler.swift in Sources */,
+				C6B97B6F2A44DD66000F0483 /* BeerDescriptionModel.swift in Sources */,
 				C627E1C22A1BFCD3005F53D7 /* CameraAssembler.swift in Sources */,
 				C62380D529E9A128004B7091 /* AppDelegate.swift in Sources */,
 				C68ADE6E2A36374000F69A83 /* Strings.swift in Sources */,

@@ -7,55 +7,44 @@
 
 import Foundation
 
+// MARK: - CameraPresenterProtocol
+
 protocol CameraPresenterProtocol: AnyObject {
+    func attachView(_ view: CameraViewController)
+    func detachView()
     func showDescriptionWithBarcode(_ barcode: String)
 }
 
+// MARK: - CameraPresenter
+
 final class CameraPresenter: CameraPresenterProtocol {
     private weak var coordinator: Coordinator?
-    private let networkService: Networking
-    private let baseURL: String 
-    
-    init(coordinator: Coordinator, networkService: Networking, baseURL: String) {
+    private let beerDescriptionRepository: BeerDescriptionRepository
+    private weak var view: CameraViewController?
+
+    init(coordinator: Coordinator, beerDescriptionRepository: BeerDescriptionRepository) {
         self.coordinator = coordinator
-        self.networkService = networkService
-        self.baseURL = baseURL
+        self.beerDescriptionRepository = beerDescriptionRepository
     }
-    
+
+    func attachView(_ view: CameraViewController) {
+        self.view = view
+    }
+    func detachView() {
+        view = nil
+    }
     func showDescriptionWithBarcode(_ barcode: String) {
-        guard let url = URL(string: baseURL) else {
-            log.error("Invalid base URL")
-            return
-        }
-        
-        let beerDescriptionPath = "beers"
-        
-        let urlWithPath = url.appendingPathComponent(beerDescriptionPath)
-        var request = URLRequest(url: urlWithPath)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let requestBody = ["barcode": barcode]
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: requestBody, options: [])
-            request.httpBody = jsonData
-        } catch {
-            log.error("Error serializing request body: \(error.localizedDescription)")
-            return
-        }
-        
-        networkService.fetchBeerDescription(with: request) { [weak self] result in
+        beerDescriptionRepository.fetchBeerDescription(with: barcode) { [weak self] result in
             switch result {
             case .success(let beerDescription):
                 DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
+                    guard let self = self, let view = self.view else { return }
                     let description = beerDescription.description
-                    self.coordinator?.showDescriptionWithBarcode(description, from: self)
+                    self.coordinator?.showDescriptionWithBarcode(description, from: view)
                 }
             case .failure(let error):
                 log.error("Error fetching beer description: \(error.localizedDescription)")
             }
         }
     }
-
 }

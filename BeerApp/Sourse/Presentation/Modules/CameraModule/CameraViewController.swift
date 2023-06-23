@@ -7,17 +7,20 @@
 
 import UIKit
 
+// MARK: - CameraViewController
+
 final class CameraViewController: UIViewController {
     
     // MARK: - Properties
     private var scannerView = BarcodeScannerView(frame: .zero)
     private var presenter: CameraPresenterProtocol
     
+    // MARK: - Initialization
     init(presenter: CameraPresenterProtocol) {
         self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
+        super.init(nibName: nil,
+                   bundle: nil)
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -52,7 +55,6 @@ final class CameraViewController: UIViewController {
         scannerView.layer.masksToBounds = true
         scannerView.delegate = self
         view.addSubview(scannerView)
-        
         let lineView = UIView()
         lineView.backgroundColor = .red
         lineView.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +65,6 @@ final class CameraViewController: UIViewController {
             lineView.widthAnchor.constraint(equalToConstant: LocalConstants.lineViewWidth),
             lineView.heightAnchor.constraint(equalToConstant: LocalConstants.lineViewHeight)
         ])
-        
         let instructionLabel = UILabel()
         instructionLabel.text = Strings.instructionLabelText
         instructionLabel.textColor = UIColor.textColor
@@ -82,22 +83,24 @@ final class CameraViewController: UIViewController {
                                                        constant: -LocalConstants.textViewLeadingTrailingConstant)
         ])
     }
-    
     private func addEllipseView() {
         let shapeLayer = CAShapeLayer()
         let path = UIBezierPath()
         path.move(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: view.bounds.width, y: 0))
-        path.addLine(to: CGPoint(x: view.bounds.width, y: view.bounds.height * LocalConstants.ellipseHeightMultiplier))
-        path.addQuadCurve(to: CGPoint(x: 0, y: view.bounds.height * LocalConstants.ellipseHeightMultiplier),
+        path.addLine(to: CGPoint(x: view.bounds.width,
+                                 y: 0))
+        path.addLine(to: CGPoint(x: view.bounds.width,
+                                 y: view.bounds.height * LocalConstants.ellipseHeightMultiplier))
+        path.addQuadCurve(to: CGPoint(x: 0,
+                                      y: view.bounds.height * LocalConstants.ellipseHeightMultiplier),
                           controlPoint: CGPoint(x: view.bounds.width / 2,
                                                 y: view.bounds.height * LocalConstants.ellipseControlPointMultiplier))
-        path.addLine(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: 0,
+                                 y: 0))
         shapeLayer.path = path.cgPath
         shapeLayer.fillColor = UIColor.white.withAlphaComponent(0.8).cgColor
         view.layer.addSublayer(shapeLayer)
     }
-    
     private func setupLabel() {
         let label = UILabel()
         label.text = Strings.appTitle
@@ -106,24 +109,26 @@ final class CameraViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LocalConstants.labelLeadingConstant),
-            label.topAnchor.constraint(equalTo: view.topAnchor, constant: LocalConstants.labelTopConstant)
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                           constant: LocalConstants.labelLeadingConstant),
+            label.topAnchor.constraint(equalTo: view.topAnchor,
+                                       constant: LocalConstants.labelTopConstant)
         ])
     }
 }
+
+// MARK: - BarcodeScannerViewDelegate
 
 extension CameraViewController: BarcodeScannerViewDelegate {
     func barcodeScanningDidFail() {
         log.verbose("Scanning Failed. Please try again.")
     }
-    
     func barcodeScanningSucceededWithCode(_ str: String?) {
         log.verbose("Barcode: ")
         if let barcode = str {
             presenter.showDescriptionWithBarcode(barcode)
         }
     }
-    
     func barcodeScanningDidStop() {
         log.verbose("Scanning stopped")
     }
