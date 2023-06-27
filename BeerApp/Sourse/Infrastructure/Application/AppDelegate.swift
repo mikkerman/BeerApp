@@ -21,5 +21,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let console = ConsoleDestination()
         console.format = "$DHH:mm:ss$d $L $M"
         logger.addDestination(console)
-    }
+    } 
 }
