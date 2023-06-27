@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5BE8743D67EB1098516DCF3AB3B4DC37"
-               BuildableName = "Pods_BeerApp.framework"
-               BlueprintName = "Pods-BeerApp"
-               ReferencedContainer = "container:Pods.xcodeproj">
+               BlueprintIdentifier = "52B60EC2A583F24ACBB69C113F5488B9"
+               BuildableName = "SwiftLint"
+               BlueprintName = "SwiftLint"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

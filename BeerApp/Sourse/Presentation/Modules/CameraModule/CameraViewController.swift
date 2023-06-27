@@ -6,21 +6,25 @@
 //
 
 import UIKit
-import AVFoundation
 
-class CameraViewController: UIViewController {
+// MARK: - CameraViewController
 
+final class CameraViewController: UIViewController {
+    
     // MARK: - Properties
-    var scannerView = BarcodeScannerView(frame: .zero)
-    var coordinator: Coordinator
-    init(coordinator: Coordinator) {
-        self.coordinator = coordinator
-        super.init(nibName: nil, bundle: nil)
+    private var scannerView = BarcodeScannerView(frame: .zero)
+    private var presenter: CameraPresenterProtocol
+    
+    // MARK: - Initialization
+    init(presenter: CameraPresenterProtocol) {
+        self.presenter = presenter
+        super.init(nibName: nil,
+                   bundle: nil)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,16 +34,17 @@ class CameraViewController: UIViewController {
         setupView()
         log.verbose("ViewController has loaded its view.")
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         scannerView.startScanning()
     }
-
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         scannerView.stopScanning()
     }
-
+    
     // MARK: - Private Methods
     private func setupView() {
         scannerView = BarcodeScannerView(frame: CGRect(x: view.frame.midX - LocalConstants.scannerViewWidth / 2,
@@ -47,10 +52,9 @@ class CameraViewController: UIViewController {
                                                        width: LocalConstants.scannerViewWidth,
                                                        height: LocalConstants.scannerViewHeight))
         scannerView.layer.cornerRadius = LocalConstants.cornerRadius
-         scannerView.layer.masksToBounds = true
-         scannerView.delegate = self
-         view.addSubview(scannerView)
-
+        scannerView.layer.masksToBounds = true
+        scannerView.delegate = self
+        view.addSubview(scannerView)
         let lineView = UIView()
         lineView.backgroundColor = .red
         lineView.translatesAutoresizingMaskIntoConstraints = false
@@ -61,7 +65,6 @@ class CameraViewController: UIViewController {
             lineView.widthAnchor.constraint(equalToConstant: LocalConstants.lineViewWidth),
             lineView.heightAnchor.constraint(equalToConstant: LocalConstants.lineViewHeight)
         ])
-
         let instructionLabel = UILabel()
         instructionLabel.text = Strings.instructionLabelText
         instructionLabel.textColor = UIColor.textColor
@@ -83,8 +86,7 @@ class CameraViewController: UIViewController {
     private func addEllipseView() {
         let shapeLayer = CAShapeLayer()
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: 0,
-                              y: 0))
+        path.move(to: CGPoint(x: 0, y: 0))
         path.addLine(to: CGPoint(x: view.bounds.width,
                                  y: 0))
         path.addLine(to: CGPoint(x: view.bounds.width,
@@ -107,11 +109,15 @@ class CameraViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LocalConstants.labelLeadingConstant),
-            label.topAnchor.constraint(equalTo: view.topAnchor, constant: LocalConstants.labelTopConstant)
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                           constant: LocalConstants.labelLeadingConstant),
+            label.topAnchor.constraint(equalTo: view.topAnchor,
+                                       constant: LocalConstants.labelTopConstant)
         ])
     }
 }
+
+// MARK: - BarcodeScannerViewDelegate
 
 extension CameraViewController: BarcodeScannerViewDelegate {
     func barcodeScanningDidFail() {
@@ -120,7 +126,7 @@ extension CameraViewController: BarcodeScannerViewDelegate {
     func barcodeScanningSucceededWithCode(_ str: String?) {
         log.verbose("Barcode: ")
         if let barcode = str {
-            coordinator.showDescriptionWithBarcode(barcode, from: self)
+            presenter.showDescriptionWithBarcode(barcode)
         }
     }
     func barcodeScanningDidStop() {

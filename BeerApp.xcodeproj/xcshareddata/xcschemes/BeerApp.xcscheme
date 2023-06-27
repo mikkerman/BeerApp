@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5BE8743D67EB1098516DCF3AB3B4DC37"
-               BuildableName = "Pods_BeerApp.framework"
-               BlueprintName = "Pods-BeerApp"
-               ReferencedContainer = "container:Pods.xcodeproj">
+               BlueprintIdentifier = "C62380D029E9A128004B7091"
+               BuildableName = "BeerApp.app"
+               BlueprintName = "BeerApp"
+               ReferencedContainer = "container:BeerApp.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "52B60EC2A583F24ACBB69C113F5488B9"
+               BuildableName = "SwiftLint"
+               BlueprintName = "SwiftLint"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -40,6 +54,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "C62380D029E9A128004B7091"
+            BuildableName = "BeerApp.app"
+            BlueprintName = "BeerApp"
+            ReferencedContainer = "container:BeerApp.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -47,6 +71,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "C62380D029E9A128004B7091"
+            BuildableName = "BeerApp.app"
+            BlueprintName = "BeerApp"
+            ReferencedContainer = "container:BeerApp.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
