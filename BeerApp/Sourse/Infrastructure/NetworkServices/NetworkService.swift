@@ -8,13 +8,11 @@
 import Foundation
 
 protocol Networking {
-    func fetchBeerDescription(with request: URLRequest, completion: @escaping (Result<BeerDescription, Error>) -> Void)
+    func performRequest<T: Decodable>(with request: URLRequest, completion: @escaping (Result<T, Error>) -> Void)
 }
 
 final class NetworkService: Networking {
-    func fetchBeerDescription(with request: URLRequest,
-                              completion: @escaping (Result<BeerDescription,
-                                                     Error>) -> Void) {
+    func performRequest<T: Decodable>(with request: URLRequest, completion: @escaping (Result<T, Error>) -> Void) {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 DispatchQueue.main.async {
@@ -37,10 +35,9 @@ final class NetworkService: Networking {
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let beerDescription = try decoder.decode(BeerDescription.self,
-                                                         from: data)
+                let decodedObject = try decoder.decode(T.self, from: data)
                 DispatchQueue.main.async {
-                    completion(.success(beerDescription))
+                    completion(.success(decodedObject))
                 }
             } catch {
                 DispatchQueue.main.async {
