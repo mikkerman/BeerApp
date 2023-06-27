@@ -4,11 +4,13 @@
 //
 //  Created by Михаил Герман on 23.05.2023.
 //
-
-import UIKit
+import Foundation
 
 class CameraModuleAssembler {
     static func build(coordinator: Coordinator) -> CameraViewController {
-        return CameraViewController(coordinator: coordinator)
+        let networkService = NetworkService()
+        let beerDescriptionRepository = BeerDescriptionRepository(networkService: networkService)
+        let presenter = CameraPresenter(coordinator: coordinator, beerDescriptionRepository: beerDescriptionRepository)
+        return CameraViewController(presenter: presenter)
     }
 }
