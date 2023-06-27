@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  BeerApp
+
+  Created by Михаил Герман on 07.06.2023.
+  
+*/
+"instructionLabelText" = "Держите штрих-код поперек красной линии";
+"appTitle" = "BeerApp";
+"nameLabel" = "Name:";
+"breweryLabel" = "Brewery:";
+"beerStyleLabel" = "Beer Style:";
+"alcoholContentLabel" = "Alcohol Content:";
+"ibuLabel" = "IBU:";
+"countryOfOriginLabel" = "Country of Origin:";
+"descriptionLabel" = "Description:";
+
