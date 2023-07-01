@@ -12,6 +12,7 @@ class DescriptionViewController: UIViewController {
     private let shapeLayer = CAShapeLayer()
     private let imageView = UIImageView()
     private let textView = UITextView()
+    var beerDescription: BeerDescription? // Added
     var presenter: DescriptionPresenter?
 
     // MARK: - Lifecycle Methods
@@ -21,8 +22,32 @@ class DescriptionViewController: UIViewController {
         addEllipseView()
         addImageView()
         addBeerDescription()
+        if let beer = beerDescription {
+            setBeerDescription(beer: beer)
+        }
         log.verbose("ViewController has loaded its view.")
     }
+    // MARK: - Public Methods
+    func setBeerDescription(beer: BeerDescription) {
+        let descriptionText = """
+        Наименование:
+        \(beer.name)
+        Пивоварня:
+        \(beer.brewery)
+        Стиль пива:
+        \(beer.beerStyle)
+        Содержание алкоголя:
+        \(beer.alcoholContent)
+        Горечь(IBU):
+        \(beer.bitternessIBU)
+        Страна происхождения:
+        \(beer.countryOfOrigin)
+        Описание:
+        \(beer.description)
+        """
+        textView.text = descriptionText
+    }
+
     // MARK: - Private Methods
     private func addEllipseView() {
         let path = UIBezierPath()
@@ -70,13 +95,13 @@ class DescriptionViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             textView.topAnchor.constraint(equalTo: imageView.bottomAnchor,
-                                          constant: 45),
+                                          constant: 30),
             textView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-                                              constant: LocalConstants.textViewLeadingConstant),
+                                              constant: 20),
             textView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-                                               constant: LocalConstants.textViewTrailingConstant),
+                                               constant: -20),
             textView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                                             constant: LocalConstants.textViewBottomConstant)
+                                             constant: -20)
         ])
     }
 }

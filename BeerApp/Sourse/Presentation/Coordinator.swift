@@ -4,21 +4,17 @@
 //
 //  Created by Михаил Герман on 22.04.2023.
 //
-
 import UIKit
 
 final class Coordinator {
-
-    // MARK: Properties
-    // MARK: Private properties
     private let window: UIWindow?
     private let moduleFactory: ModuleFactory
+    private let beerDescriptionRepository: BeerDescriptionRepository
 
-    // MARK: Init
-    init(window: UIWindow?,
-         moduleFactory: ModuleFactory) {
+    init(window: UIWindow?, moduleFactory: ModuleFactory, beerDescriptionRepository: BeerDescriptionRepository) {
         self.window = window
         self.moduleFactory = moduleFactory
+        self.beerDescriptionRepository = beerDescriptionRepository
     }
 
     // MARK: Public Methods
@@ -27,13 +23,15 @@ final class Coordinator {
         window?.rootViewController = splashViewController
         window?.makeKeyAndVisible()
     }
+    
     func showCamera() {
         let cameraViewController = moduleFactory.buildCameraModule(coordinator: self)
         window?.rootViewController = cameraViewController
     }
+    
     func showDescriptionWithBarcode(_ barcode: String, from sourceVC: UIViewController) {
         log.verbose("showDescriptionWithBarcode called with barcode: \(barcode)")
-        let descriptionViewController = moduleFactory.buildDescriptionModuleWithBarcode(barcode, coordinator: self)
+        let descriptionViewController = moduleFactory.buildDescriptionModuleWithBarcode(barcode, coordinator: self, beerDescriptionRepository: self.beerDescriptionRepository)
         descriptionViewController.modalPresentationStyle = .fullScreen
         sourceVC.present(descriptionViewController,
                          animated: true,

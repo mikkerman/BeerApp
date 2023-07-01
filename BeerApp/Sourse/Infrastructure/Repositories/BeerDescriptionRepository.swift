@@ -37,8 +37,17 @@ final class BeerDescriptionRepository: BeerDescriptionRepositoryProtocol {
             completion(.failure(NetworkError.serializationError))
             return
         }
-        networkService.performRequest(with: request) { (result: Result<BeerDescription, Error>) in
-            completion(result)
+        networkService.performRequest(with: request) { (result: Result<BeersResponse, Error>) in
+            switch result {
+            case .success(let beersResponse):
+                if let beer = beersResponse.beers.first(where: { $0.barcode == barcode }) {
+                    completion(.success(beer))
+                } else {
+                    completion(.failure(NetworkError.noData))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
 }

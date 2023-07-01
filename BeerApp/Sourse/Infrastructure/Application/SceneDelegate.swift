@@ -17,14 +17,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return
         }
 
+        let networkService = NetworkService()
+        let beerDescriptionRepository = BeerDescriptionRepository(networkService: networkService)
         let moduleFactory = ModuleFactory()
 
         let coordinatorWindow = UIWindow(windowScene: windowScene)
-        let coordinator = Coordinator(window: coordinatorWindow, moduleFactory: moduleFactory)
+        let coordinator = Coordinator(window: coordinatorWindow,
+                                      moduleFactory: moduleFactory,
+                                      beerDescriptionRepository: beerDescriptionRepository)
         moduleFactory.injectCoordinator(with: coordinator)
 
         coordinator.start()
 
         self.window = coordinatorWindow
     }
-} 
+}
+
