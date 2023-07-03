@@ -116,6 +116,9 @@ final class CameraViewController: UIViewController {
                                        constant: LocalConstants.labelTopConstant)
         ])
     }
+    deinit {
+           log.debug("CameraViewController deinitialized")
+       }
 }
 
 // MARK: - BarcodeScannerViewDelegate

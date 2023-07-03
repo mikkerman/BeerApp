@@ -26,30 +26,41 @@ final class CameraPresenter: CameraPresenterProtocol {
          beerDescriptionRepository: BeerDescriptionRepository) {
         self.coordinator = coordinator
         self.beerDescriptionRepository = beerDescriptionRepository
+        log.debug("CameraPresenter initialized with Coordinator: \(coordinator)")
     }
+
     
     func attachView(_ view: CameraViewController) {
         self.view = view
     }
+    
     func detachView() {
         view = nil
     }
+    
     func showDescriptionWithBarcode(_ barcode: String) {
+        log.debug("showDescriptionWithBarcode started with barcode: \(barcode)")
+        
         beerDescriptionRepository.fetchBeerDescription(with: barcode) { [weak self] result in
             switch result {
             case .success(let beerDescription):
                 guard let self = self else { return }
                 DispatchQueue.main.async {
-                    guard let view = self.view else { return }
-                    let description = beerDescription.description
-                    self.coordinator?.showDescriptionWithBarcode(description, from: view)
+                    log.debug("Successfully fetched beer description, preparing to show on view")
+                    guard let view = self.view else {
+                        log.error("View is nil, cannot show beer description")
+                        return
+                    }
+                    log.debug("About to call coordinator's showDescriptionWithBeerDescription method with view \(view)")
+                    self.coordinator?.showDescriptionWithBeerDescription(beerDescription, from: view)
                 }
             case .failure(let error):
                 log.error("Error fetching beer description: \(error.localizedDescription)")
             }
         }
     }
+    deinit {
+           log.debug("CameraPresenter deinitialized")
+       }
+}
 
-        
-        
-    }

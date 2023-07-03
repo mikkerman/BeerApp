@@ -23,11 +23,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let coordinatorWindow = UIWindow(windowScene: windowScene)
         let coordinator = Coordinator(window: coordinatorWindow,
-                                      moduleFactory: moduleFactory,
-                                      beerDescriptionRepository: beerDescriptionRepository)
+                                      moduleFactory: moduleFactory)
+
+        log.debug("Coordinator initialized: \(coordinator)")
+
         moduleFactory.injectCoordinator(with: coordinator)
 
+        log.debug("Coordinator injected into module factory")
+
         coordinator.start()
+
 
         self.window = coordinatorWindow
     }

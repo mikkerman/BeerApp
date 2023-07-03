@@ -12,8 +12,7 @@ class DescriptionViewController: UIViewController {
     private let shapeLayer = CAShapeLayer()
     private let imageView = UIImageView()
     private let textView = UITextView()
-    var beerDescription: BeerDescription?
-    var presenter: DescriptionPresenter // update this to non-optional
+    private var presenter: DescriptionPresenter
 
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
@@ -23,9 +22,7 @@ class DescriptionViewController: UIViewController {
         addEllipseView()
         addImageView()
         addBeerDescription()
-        if let beer = beerDescription {
-            setBeerDescription(beer: beer)
-        }
+        presenter.fetchBeerDescription()
         log.verbose("ViewController has loaded its view.")
     }
 
@@ -57,6 +54,7 @@ class DescriptionViewController: UIViewController {
         """
         textView.text = descriptionText
     }
+
 
     // MARK: - Private Methods
     private func addEllipseView() {
