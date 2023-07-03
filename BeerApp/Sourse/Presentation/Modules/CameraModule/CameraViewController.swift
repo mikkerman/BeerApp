@@ -29,6 +29,7 @@ final class CameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.beerColor
+        presenter.attachView(self)
         addEllipseView()
         setupLabel()
         setupView()

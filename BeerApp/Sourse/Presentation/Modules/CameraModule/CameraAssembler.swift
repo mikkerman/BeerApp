@@ -11,6 +11,8 @@ class CameraModuleAssembler {
         let networkService = NetworkService()
         let beerDescriptionRepository = BeerDescriptionRepository(networkService: networkService)
         let presenter = CameraPresenter(coordinator: coordinator, beerDescriptionRepository: beerDescriptionRepository)
-        return CameraViewController(presenter: presenter)
+        let view = CameraViewController(presenter: presenter)
+        presenter.attachView(view)
+        return view
     }
 }

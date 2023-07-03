@@ -12,12 +12,13 @@ class DescriptionViewController: UIViewController {
     private let shapeLayer = CAShapeLayer()
     private let imageView = UIImageView()
     private let textView = UITextView()
-    var beerDescription: BeerDescription? // Added
-    var presenter: DescriptionPresenter?
+    var beerDescription: BeerDescription?
+    var presenter: DescriptionPresenter // update this to non-optional
 
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.attachView(self) // add this line
         view.backgroundColor = UIColor.beerColor
         addEllipseView()
         addImageView()
@@ -26,6 +27,15 @@ class DescriptionViewController: UIViewController {
             setBeerDescription(beer: beer)
         }
         log.verbose("ViewController has loaded its view.")
+    }
+
+    init(presenter: DescriptionPresenter) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     // MARK: - Public Methods
     func setBeerDescription(beer: BeerDescription) {
