@@ -17,7 +17,7 @@ class DescriptionViewController: UIViewController {
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.attachView(self) // add this line
+        presenter.attachView(self) 
         view.backgroundColor = UIColor.beerColor
         addEllipseView()
         addImageView()
@@ -53,6 +53,8 @@ class DescriptionViewController: UIViewController {
         \(beer.description)
         """
         textView.text = descriptionText
+        textView.font = Fonts.descriptionFont
+        textView.textColor = .textColor
     }
 
 

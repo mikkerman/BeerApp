@@ -52,6 +52,7 @@ final class NetworkService: Networking {
 enum NetworkError: Error {
     case invalidResponse
     case noData
+    case emptyData
     case invalidURL
     case serializationError
 }

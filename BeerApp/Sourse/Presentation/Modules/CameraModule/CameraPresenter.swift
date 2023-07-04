@@ -28,7 +28,7 @@ final class CameraPresenter: CameraPresenterProtocol {
         self.beerDescriptionRepository = beerDescriptionRepository
         log.debug("CameraPresenter initialized with Coordinator: \(coordinator)")
     }
-
+    
     
     func attachView(_ view: CameraViewController) {
         self.view = view
@@ -56,11 +56,14 @@ final class CameraPresenter: CameraPresenterProtocol {
                 }
             case .failure(let error):
                 log.error("Error fetching beer description: \(error.localizedDescription)")
+                if let error = error as? NetworkError, error == .noData {
+                    self?.view?.displayNoDataAlert()
+                }
             }
         }
     }
-    deinit {
-           log.debug("CameraPresenter deinitialized")
-       }
+        deinit {
+            log.debug("CameraPresenter deinitialized")
+        }
+    
 }
-

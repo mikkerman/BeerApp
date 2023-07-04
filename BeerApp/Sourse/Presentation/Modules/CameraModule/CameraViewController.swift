@@ -136,6 +136,13 @@ extension CameraViewController: BarcodeScannerViewDelegate {
     func barcodeScanningDidStop() {
         log.verbose("Scanning stopped")
     }
+    func displayNoDataAlert() {
+          let alert = UIAlertController(title: "Error", message: "No data found for the scanned barcode", preferredStyle: .alert)
+          alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+          DispatchQueue.main.async {
+              self.present(alert, animated: true, completion: nil)
+          }
+      }
 }
 
 private extension CameraViewController {

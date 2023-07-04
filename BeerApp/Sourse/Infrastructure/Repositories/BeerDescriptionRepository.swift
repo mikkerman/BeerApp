@@ -46,6 +46,11 @@ final class BeerDescriptionRepository: BeerDescriptionRepositoryProtocol {
         networkService.performRequest(with: request) { (result: Result<BeersResponse, Error>) in
             switch result {
             case .success(let beersResponse):
+                if beersResponse.beers.isEmpty {
+                    log.error("Server returned empty beer list")
+                    completion(.failure(NetworkError.emptyData))
+                    return
+                }
                 if let beer = beersResponse.beers.first(where: { $0.barcode == barcode }) {
                     log.debug("Successfully fetched beer description")
                     completion(.success(beer))
