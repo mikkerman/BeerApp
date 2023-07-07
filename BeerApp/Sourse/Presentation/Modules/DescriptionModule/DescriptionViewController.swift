@@ -12,17 +12,52 @@ class DescriptionViewController: UIViewController {
     private let shapeLayer = CAShapeLayer()
     private let imageView = UIImageView()
     private let textView = UITextView()
-    var presenter: DescriptionPresenter?
+    private var presenter: DescriptionPresenter
 
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.attachView(self) 
         view.backgroundColor = UIColor.beerColor
         addEllipseView()
         addImageView()
         addBeerDescription()
+        presenter.fetchBeerDescription()
         log.verbose("ViewController has loaded its view.")
     }
+
+    init(presenter: DescriptionPresenter) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    // MARK: - Public Methods
+    func setBeerDescription(beer: BeerDescription) {
+        let descriptionText = """
+        Наименование:
+        \(beer.name)
+        Пивоварня:
+        \(beer.brewery)
+        Стиль пива:
+        \(beer.beerStyle)
+        Содержание алкоголя:
+        \(beer.alcoholContent)
+        Горечь(IBU):
+        \(beer.bitternessIBU)
+        Страна происхождения:
+        \(beer.countryOfOrigin)
+        Описание:
+        \(beer.description)
+        """
+        textView.text = descriptionText
+        textView.font = Fonts.descriptionFont
+        textView.textColor = .textColor
+    }
+
+
     // MARK: - Private Methods
     private func addEllipseView() {
         let path = UIBezierPath()
@@ -70,13 +105,13 @@ class DescriptionViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             textView.topAnchor.constraint(equalTo: imageView.bottomAnchor,
-                                          constant: 45),
+                                          constant: 30),
             textView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-                                              constant: LocalConstants.textViewLeadingConstant),
+                                              constant: 20),
             textView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-                                               constant: LocalConstants.textViewTrailingConstant),
+                                               constant: -20),
             textView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                                             constant: LocalConstants.textViewBottomConstant)
+                                             constant: -20)
         ])
     }
 }

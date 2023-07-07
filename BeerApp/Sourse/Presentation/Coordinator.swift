@@ -8,35 +8,41 @@
 import UIKit
 
 final class Coordinator {
-
-    // MARK: Properties
-    // MARK: Private properties
     private let window: UIWindow?
+    private let navigationController: UINavigationController
     private let moduleFactory: ModuleFactory
-
-    // MARK: Init
-    init(window: UIWindow?,
-         moduleFactory: ModuleFactory) {
+    
+    init(window: UIWindow?, moduleFactory: ModuleFactory) {
         self.window = window
+        self.navigationController = UINavigationController()
         self.moduleFactory = moduleFactory
+        window?.rootViewController = navigationController
+        log.debug("Coordinator initialized: \(self)")
     }
-
+    
     // MARK: Public Methods
     func start() {
+        log.debug("Starting Coordinator: \(self)")
         let splashViewController = moduleFactory.buildSplashModule()
-        window?.rootViewController = splashViewController
+        navigationController.viewControllers = [splashViewController]
         window?.makeKeyAndVisible()
     }
+    
     func showCamera() {
+        log.debug("Attempting to show Camera with Coordinator: \(self)")
         let cameraViewController = moduleFactory.buildCameraModule(coordinator: self)
-        window?.rootViewController = cameraViewController
+        navigationController.viewControllers = [cameraViewController]
     }
-    func showDescriptionWithBarcode(_ barcode: String, from sourceVC: UIViewController) {
-        log.verbose("showDescriptionWithBarcode called with barcode: \(barcode)")
-        let descriptionViewController = moduleFactory.buildDescriptionModuleWithBarcode(barcode, coordinator: self)
-        descriptionViewController.modalPresentationStyle = .fullScreen
-        sourceVC.present(descriptionViewController,
-                         animated: true,
-                         completion: nil)
+    
+    func showDescriptionWithBeerDescription(_ beerDescription: BeerDescription, from sourceVC: UIViewController) {
+        log.verbose("showDescriptionWithBeerDescription called with beerDescription: \(beerDescription)")
+        log.debug("About to build DescriptionModule with beerDescription \(beerDescription) and Coordinator: \(self)")
+        let descriptionViewController = moduleFactory.buildDescriptionModuleWithBeerDescription(beerDescription, coordinator: self)
+        log.debug("DescriptionModule built, about to present it from \(sourceVC)")
+        navigationController.pushViewController(descriptionViewController, animated: true)
+    }
+    deinit {
+        log.debug("Coordinator deinitialized")
     }
 }
+

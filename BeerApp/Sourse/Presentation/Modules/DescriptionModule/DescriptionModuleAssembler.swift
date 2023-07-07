@@ -8,11 +8,17 @@
 import UIKit
 
 class DescriptionModuleAssembler {
-    static func build(barcode: String, coordinator: Coordinator) -> DescriptionViewController {
-        let viewController = DescriptionViewController()
-        let presenter = DescriptionPresenter(coordinator: coordinator, barcode: barcode)
+    static func build(beerDescription: BeerDescription,
+                      coordinator: Coordinator) -> DescriptionViewController {
+        let presenter = DescriptionPresenter(coordinator: coordinator,
+                                             beerDescription: beerDescription)
+        let viewController = DescriptionViewController(presenter: presenter)
         presenter.attachView(viewController)
-        viewController.presenter = presenter
         return viewController
     }
 }
+
+
+
+
+

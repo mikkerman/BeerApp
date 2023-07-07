@@ -21,11 +21,15 @@ final class BeerDescriptionRepository: BeerDescriptionRepositoryProtocol {
     }
     
     func fetchBeerDescription(with barcode: String, completion: @escaping (Result<BeerDescription, Error>) -> Void) {
+        log.debug("fetchBeerDescription started with barcode: \(barcode)")
+        
         let beerDescriptionPath = APIConstants.beerDescriptionPath
         guard let url = URL(string: baseURL + beerDescriptionPath) else {
+            log.error("Invalid URL for beer description path")
             completion(.failure(NetworkError.invalidURL))
             return
         }
+        
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -34,11 +38,30 @@ final class BeerDescriptionRepository: BeerDescriptionRepositoryProtocol {
             let jsonData = try JSONSerialization.data(withJSONObject: requestBody, options: [])
             request.httpBody = jsonData
         } catch {
+            log.error("Serialization error: \(error)")
             completion(.failure(NetworkError.serializationError))
             return
         }
-        networkService.performRequest(with: request) { (result: Result<BeerDescription, Error>) in
-            completion(result)
+        
+        networkService.performRequest(with: request) { (result: Result<BeersResponse, Error>) in
+            switch result {
+            case .success(let beersResponse):
+                if beersResponse.beers.isEmpty {
+                    log.error("Server returned empty beer list")
+                    completion(.failure(NetworkError.emptyData))
+                    return
+                }
+                if let beer = beersResponse.beers.first(where: { $0.barcode == barcode }) {
+                    log.debug("Successfully fetched beer description")
+                    completion(.success(beer))
+                } else {
+                    log.error("No data for given barcode")
+                    completion(.failure(NetworkError.noData))
+                }
+            case .failure(let error):
+                log.error("Network request error: \(error)")
+                completion(.failure(error))
+            }
         }
     }
 }
