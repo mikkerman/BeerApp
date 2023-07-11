@@ -5,7 +5,7 @@
   Created by Михаил Герман on 07.06.2023.
   
 */
-"instructionLabelText" = "Держите штрих-код поперек красной линии";
+"instructionLabelText" = "Keep the barcode across the red line";
 "appTitle" = "BeerApp";
 "nameLabel" = "Name:";
 "breweryLabel" = "Brewery:";
