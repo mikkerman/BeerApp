@@ -29,6 +29,7 @@ final class CameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.beerColor
+        presenter.attachView(self)
         addEllipseView()
         setupLabel()
         setupView()
@@ -115,6 +116,9 @@ final class CameraViewController: UIViewController {
                                        constant: LocalConstants.labelTopConstant)
         ])
     }
+    deinit {
+           log.debug("CameraViewController deinitialized")
+       }
 }
 
 // MARK: - BarcodeScannerViewDelegate
@@ -132,6 +136,13 @@ extension CameraViewController: BarcodeScannerViewDelegate {
     func barcodeScanningDidStop() {
         log.verbose("Scanning stopped")
     }
+    func displayNoDataAlert() {
+          let alert = UIAlertController(title: "Error", message: "No data found for the scanned barcode", preferredStyle: .alert)
+          alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+          DispatchQueue.main.async {
+              self.present(alert, animated: true, completion: nil)
+          }
+      }
 }
 
 private extension CameraViewController {

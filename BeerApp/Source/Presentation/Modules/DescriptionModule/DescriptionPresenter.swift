@@ -11,17 +11,24 @@ final class DescriptionPresenter {
     // MARK: Private properties
     private weak var viewController: DescriptionViewController?
     private let coordinator: Coordinator
-    private let barcode: String
+    private let beerDescription: BeerDescription
+
     // MARK: Init
     init(coordinator: Coordinator,
-         barcode: String) {
+         beerDescription: BeerDescription) {
         self.coordinator = coordinator
-        self.barcode = barcode
+        self.beerDescription = beerDescription
     }
+
     // MARK: Public Methods
+    func fetchBeerDescription() {
+        self.viewController?.setBeerDescription(beer: beerDescription)
+    }
+
     func attachView(_ viewController: DescriptionViewController) {
         if self.viewController == nil {
             self.viewController = viewController
+            fetchBeerDescription()
         }
     }
 }

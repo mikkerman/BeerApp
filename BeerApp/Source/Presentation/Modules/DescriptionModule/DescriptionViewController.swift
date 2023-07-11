@@ -12,17 +12,81 @@ class DescriptionViewController: UIViewController {
     private let shapeLayer = CAShapeLayer()
     private let imageView = UIImageView()
     private let textView = UITextView()
-    var presenter: DescriptionPresenter?
+    private var presenter: DescriptionPresenter
 
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.attachView(self)
         view.backgroundColor = UIColor.beerColor
         addEllipseView()
         addImageView()
         addBeerDescription()
+        presenter.fetchBeerDescription()
         log.verbose("ViewController has loaded its view.")
+        for family: String in UIFont.familyNames {
+                print("\(family)")
+                for names: String in UIFont.fontNames(forFamilyName: family) {
+                    print("== \(names)")
+                }
+            }
     }
+
+    init(presenter: DescriptionPresenter) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Public Methods
+    func setBeerDescription(beer: BeerDescription) {
+        
+        if let beerImage = UIImage(named: beer.barcode) {
+            imageView.image = beerImage
+        } else {
+            imageView.image = UIImage(named: "defaultBeerImage")
+        }
+        
+        let descriptionText = """
+              Name:
+              \(beer.name)
+              Brewery:
+              \(beer.brewery)
+              Beer Style:
+              \(beer.beerStyle)
+              Alcohol Content:
+              \(beer.alcoholContent)
+              Bitterness (IBU):
+              \(beer.bitternessIBU)
+              Country of Origin:
+              \(beer.countryOfOrigin)
+              Description:
+              \(beer.description)
+              """
+        
+        
+        let formattedText = NSMutableAttributedString()
+        let boldAttributes = [NSAttributedString.Key.font: Fonts.descriptionFontSemiBold]
+        let normalAttributes = [NSAttributedString.Key.font: Fonts.descriptionFont]
+        
+        descriptionText.split(separator: "\n").enumerated().forEach { index, line in
+            let attributedLine: NSAttributedString
+            if index % 2 == 0 {
+                attributedLine = NSAttributedString(string: String(line), attributes: boldAttributes)
+            } else {
+                attributedLine = NSAttributedString(string: String(line), attributes: normalAttributes)
+            }
+            formattedText.append(attributedLine)
+            formattedText.append(NSAttributedString(string: "\n"))
+        }
+        
+        textView.attributedText = formattedText
+        textView.textColor = .textColor
+    }
+
     // MARK: - Private Methods
     private func addEllipseView() {
         let path = UIBezierPath()
@@ -56,7 +120,7 @@ class DescriptionViewController: UIViewController {
             imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                           constant: 45)
+                                           constant: 70)
         ])
     }
 
@@ -70,13 +134,13 @@ class DescriptionViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             textView.topAnchor.constraint(equalTo: imageView.bottomAnchor,
-                                          constant: 45),
+                                          constant: 30),
             textView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-                                              constant: LocalConstants.textViewLeadingConstant),
+                                              constant: 20),
             textView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-                                               constant: LocalConstants.textViewTrailingConstant),
+                                               constant: -20),
             textView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                                             constant: LocalConstants.textViewBottomConstant)
+                                             constant: -20)
         ])
     }
 }

@@ -27,6 +27,7 @@
 		C639BEEB29F327D5001804B1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639BEEA29F327D5001804B1 /* Coordinator.swift */; };
 		C639BEED29F3288A001804B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639BEEC29F3288A001804B1 /* Constants.swift */; };
 		C63B5CB82A0285EF00B08E76 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63B5CB72A0285EF00B08E76 /* Fonts.swift */; };
+		C6507C2E2A547CD900609965 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6507C2D2A547BCE00609965 /* Montserrat-SemiBold.ttf */; };
 		C68ADE6A2A31062400F69A83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C68ADE692A31062400F69A83 /* Localizable.strings */; };
 		C68ADE6C2A3257BA00F69A83 /* DescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68ADE6B2A3257BA00F69A83 /* DescriptionPresenter.swift */; };
 		C68ADE6E2A36374000F69A83 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68ADE6D2A36374000F69A83 /* Strings.swift */; };
@@ -62,6 +63,7 @@
 		C639BEEA29F327D5001804B1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		C639BEEC29F3288A001804B1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C63B5CB72A0285EF00B08E76 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		C6507C2D2A547BCE00609965 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		C68ADE692A31062400F69A83 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		C68ADE6B2A3257BA00F69A83 /* DescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionPresenter.swift; sourceTree = "<group>"; };
 		C68ADE6D2A36374000F69A83 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
@@ -119,7 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				C62380E229E9A12A004B7091 /* Info.plist */,
-				C62380E929EB21B5004B7091 /* Sourse */,
+				C62380E929EB21B5004B7091 /* Source */,
 				C62380E829E9A2BE004B7091 /* Resource */,
 				C6281FDD2A168F9B00D66BDE /* AppLogger.swift */,
 			);
@@ -138,14 +140,14 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		C62380E929EB21B5004B7091 /* Sourse */ = {
+		C62380E929EB21B5004B7091 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				C62380EA29EB2CF7004B7091 /* Infrastructure */,
 				C62380EB29EB2D0F004B7091 /* Features */,
 				C62380EC29EB2D1B004B7091 /* Presentation */,
 			);
-			path = Sourse;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		C62380EA29EB2CF7004B7091 /* Infrastructure */ = {
@@ -221,6 +223,7 @@
 		C627E1CC2A1C02AF005F53D7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				C6507C2D2A547BCE00609965 /* Montserrat-SemiBold.ttf */,
 				C62EFC782A25412F00CE3789 /* Montserrat-Regular.ttf */,
 				C63B5CB72A0285EF00B08E76 /* Fonts.swift */,
 			);
@@ -361,6 +364,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6507C2E2A547CD900609965 /* Montserrat-SemiBold.ttf in Resources */,
 				C62380E129E9A12A004B7091 /* LaunchScreen.storyboard in Resources */,
 				C68ADE6A2A31062400F69A83 /* Localizable.strings in Resources */,
 				C62EFC792A25412F00CE3789 /* Montserrat-Regular.ttf in Resources */,

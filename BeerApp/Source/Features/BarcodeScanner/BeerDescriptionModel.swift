@@ -7,6 +7,9 @@
 
 import Foundation
 
+struct BeersResponse: Decodable {
+    let beers: [BeerDescription]
+}
 struct BeerDescription: Decodable {
     let id: String
     let name: String

@@ -9,7 +9,7 @@ import UIKit
 
 enum Fonts {
     static let appNameFont = UIFont(name: "Montserrat", size: 30)
-    static let descriptionFont = UIFont(name: "Raleway", size: 20)
-    static let descriptionFontSemiBold = UIFont(name: "Raleway-SemiBold", size: 20)
+    static let descriptionFont = UIFont(name: "Montserrat", size: 20)
+    static let descriptionFontSemiBold = UIFont(name: "Montserrat-SemiBold", size: 20)
     static let instructionLabelFont = UIFont(name: "Montserrat", size: 16)
 }
